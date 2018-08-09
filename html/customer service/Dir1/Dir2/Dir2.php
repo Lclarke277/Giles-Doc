@@ -6,18 +6,20 @@
     
 <body>
  
-        <?php echo "<h1>" . basename($_SERVER['PHP_SELF'], ".php") . "</h1>";
+    <?php 
+        session_start();
+        $dirNum = $_SESSION['dirNum'] ++; // session var to pass to other pages
+        echo "<p>dirNum = " . $dirNum;        
+        echo "<p>session = " . $_SESSION['dirNum'];
+    
+        echo "<h1>" . basename($_SERVER['PHP_SELF'], ".php") . "</h1>";
         $dir = str_replace('html', 'docs', getcwd()); 
     
-        //echo "<p>getcwd = " . getcwd() . "</p>";
+        echo "<p>dir = " . $dir . "<p><br>";
     
-        //echo "<p>dir = " . $dir . "<p><br>";
+        $basePath = str_repeat('../', $_SESSION['dirNum']) . 'baseIndex.php';  
     
-        $basePath = '../../../baseIndex.php';
-    
-    //echo "<p>basePath = " . $basePath . "<br>";
-    
-    echo "<a href='http://clarke-server/index.php'>Home</ya><br><br>"; // home button
+    echo "<a href='http://clarke-server/index.php'>Home</a><br><br>";
     
  // the following php will read the contents of the directory and display it
     
