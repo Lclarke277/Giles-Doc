@@ -9,10 +9,12 @@
     <?php 
         session_start();
         $dirNum = $_SESSION['dirNum'] ++; // session var to pass to other pages
-        echo "<p>dirNum = " . $dirNum;        
-        echo "<p>session = " . $_SESSION['dirNum'];
+        //echo "<p>dirNum = " . $dirNum;  // display $dirNum      
+        //echo "<p>session = " . $_SESSION['dirNum']; // display $_SESSION
     
-        echo "<h1>" . basename($_SERVER['PHP_SELF'], ".php") . "</h1>";
+        echo "<h1>" . ucwords(strtolower(basename($_SERVER['PHP_SELF'], ".php"))) . "</h1>"; // title of page
+        // title is dynamic from the folder name. Camel-case is applied
+    
         $dir = str_replace('html', 'docs', getcwd()); 
     
         echo "<p>dir = " . $dir . "<p><br>";
