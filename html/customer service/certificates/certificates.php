@@ -32,12 +32,12 @@ $files = array_diff($allFiles, array('.', '..', '.git'));
 $num = 2;   
 while (($num) <= (count($files)+1)){
     $filename = $files[$num];
-    $path = $dir . '/' . $filename; //
-    
+    $path = str_replace('C:\wamp64\www', 'http://clarke-server', $dir . '/' . $filename); //
+
     if (strpos($filename, ".")) { // If its a file
         
-        //echo $path;
-    
+        //echo "Dir: " . $dir . "<br>"; // Show $dir 
+        //echo "Path: " . $path . "<br>"; // show $path
         echo "<a href='".$path."'>".$filename."<a/>"; // Make a link to the file
     
         echo "<br>";

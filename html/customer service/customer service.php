@@ -11,7 +11,7 @@
     
         //echo "<p>getcwd = " . getcwd() . "</p><br>";
     
-        //echo "<p>dir = " . $dir . "<p><br>";
+        echo "<p>dir = " . $dir . "<p><br>";
     
         $basePath = '../../baseIndex.php';
     
@@ -30,13 +30,13 @@ $files = array_diff($allFiles, array('.', '..'));
 $num = 2;   
 while (($num) <= (count($files)+1)){
     $filename = $files[$num];
-    $path = $dir . '/' . $filename; //
-    
+    $path = str_replace('C:\wamp64\www', 'http://clarke-server', $dir . '/' . $filename); //
+
     if (strpos($filename, ".")) { // If its a file
         
-        //echo "<br>Dir: " . $dir . "<br>";
-        //cho "<br>Path: " . $path . "<br>";
-        echo "<a href='http://clarke-server/docs/".$path."'>".$filename."<a/>"; // Make a link to the file
+        // echo "Dir: " . $dir . "<br>"; show $dir
+        // echo "Path: " . $path . "<br>"; show $path
+        echo "<a href='".$path."'>".$filename."<a/>"; // Make a link to the file
         
         //echo "<br><a href='http://clarke-server/docs/customer%20service/Signed%20NAFTA%202018.pdf'>testing</a>";
     
