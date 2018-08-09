@@ -9,20 +9,22 @@
         <?php echo "<h1>" . basename($_SERVER['PHP_SELF'], ".php") . "</h1>";
         $dir = str_replace('html', 'docs', getcwd()); 
     
-        //echo "<p>getcwd = " . getcwd() . "</p><br>";
+        //echo "<p>getcwd = " . getcwd() . "</p>";
     
-        echo "<p>dir = " . $dir . "<p><br>";
+        //echo "<p>dir = " . $dir . "<p><br>";
     
-        $basePath = '../../baseIndex.php'; 
+        $basePath = 'http://clarke-server/baseIndex.html';
     
-    echo "<a href='http://clarke-server/index.php'>Home</a><br><br>";
+    //echo "<p>basePath = " . $basePath . "<br>";
+    
+    echo "<a href='http://clarke-server/index.php'>Home</ya><br><br>"; // home button
     
  // the following php will read the contents of the directory and display it
     
  //   echo $dir;
 
 $allFiles = scandir($dir);
-$files = array_diff($allFiles, array('.', '..'));
+$files = array_diff($allFiles, array('.', '..', '.git'));
 //$files2 = scandir($dir, 1);
 
 //print_r($files);
@@ -34,11 +36,9 @@ while (($num) <= (count($files)+1)){
 
     if (strpos($filename, ".")) { // If its a file
         
-        // echo "Dir: " . $dir . "<br>"; show $dir
-        // echo "Path: " . $path . "<br>"; show $path
+        //echo "Dir: " . $dir . "<br>"; // Show $dir 
+        //echo "Path: " . $path . "<br>"; // show $path
         echo "<a href='".$path."'>".$filename."<a/>"; // Make a link to the file
-        
-        //echo "<br><a href='http://clarke-server/docs/customer%20service/Signed%20NAFTA%202018.pdf'>testing</a>";
     
         echo "<br>";
         
