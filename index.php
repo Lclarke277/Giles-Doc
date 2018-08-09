@@ -1,16 +1,18 @@
 <html>
-    
+     
 <head>
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
     
 <body>
     
     <div>
-        <h1>Gile Chemical Document System and Intranet Site</h1>
+        <h1 id='title'>Gile Chemical Document System &amp; Intranet Site</h1>
         
     </div>
     
+    <div id=table>
     <table>
         <tr>
             <th>Administration</th>
@@ -44,7 +46,7 @@
         </tr>
     
     </table>
-    
+    </div>
     
     
 </body>
