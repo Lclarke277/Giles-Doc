@@ -62,9 +62,7 @@ while (($num) <= (count($files)+1)){
     $num++;
 }  // while  
     
-
 ?>
-     <h2>This was copied from baseIndex</h2>
        
 </body>
 

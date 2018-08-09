@@ -20,7 +20,7 @@
     $tmp = explode('\\', dirname(__DIR__));
     $backPage = '\\' . end($tmp) . '.php';
     $backButton = str_replace('C:\wamp64\www', 'http://clarke-server', dirname(__DIR__)) . $backPage; // path generation
-    echo "<a href='".$backButton."'>Back</a>"; // back button
+    echo "<a href='../../index.php'>Back</a>"; // back button
     echo "<br><br>";
     
     
