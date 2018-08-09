@@ -13,7 +13,7 @@
     
         echo "<p>dir = " . $dir . "<p><br>";
     
-        $basePath = 'clarke-server/baseIndex.php';
+        $basePath = '../../baseIndex.php';
     echo "<p>basePath = " . $basePath;
     echo "<br>";
     
@@ -37,8 +37,11 @@ while (($num) <= (count($files)+1)){
     if (strpos($filename, ".")) { // If its a file
         
         //echo $path;
-    
-        echo "<a href='".$path."'>".$filename."<a/>"; // Make a link to the file
+        echo "<br>Dir: " . $dir . "<br>";
+        echo "<br>Path: " . $path . "<br>";
+        echo "<a href='http://clarke-server/docs/".$path."'>".$filename."<a/>"; // Make a link to the file
+        
+        //echo "<br><a href='http://clarke-server/docs/customer%20service/Signed%20NAFTA%202018.pdf'>testing</a>";
     
         echo "<br>";
         
@@ -49,7 +52,7 @@ while (($num) <= (count($files)+1)){
         
         $fileCreate = "./".$filename. "/" . $filename . ".php"; // create base file 
         $fileHandle = fopen($fileCreate, 'w') or die("can't open file");
-        $baseFile = file_get_contents('clarke-server/baseIndex.php'); // file to be created in the directory
+        $baseFile = file_get_contents($basePath); // file to be created in the directory
         fwrite($fileHandle, $baseFile);
         
         echo "<a href='./".$filename."/".$filename.".php'>".$filename."<a/>"; // make a link to another page
