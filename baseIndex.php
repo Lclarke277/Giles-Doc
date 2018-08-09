@@ -5,7 +5,7 @@
 </head>
     
 <body>
- <h2>This was copied from BaseIndex</h2>
+
     <?php 
         session_start();
         $dirNum = $_SESSION['dirNum'] ++; // session var to pass to other pages
