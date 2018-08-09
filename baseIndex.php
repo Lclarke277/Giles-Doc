@@ -7,30 +7,29 @@
 <body>
 
     <?php 
-        session_start();
-        $dirNum = $_SESSION['dirNum'] ++; // session var to pass to other pages
-        //echo "<p>dirNum = " . $dirNum;  // display $dirNum      
-        //echo "<p>session = " . $_SESSION['dirNum']; // display $_SESSION
+    session_start();
+    $dirNum = $_SESSION['dirNum'] ++; // session var to pass to other pages
+    //echo "<p>dirNum = " . $dirNum;  // display $dirNum      
+    //echo "<p>session = " . $_SESSION['dirNum']; // display $_SESSION
     
-        echo "<h1>" . ucwords(strtolower(basename($_SERVER['PHP_SELF'], ".php"))) . "</h1>"; // title of page
-        // title is dynamic from the folder name. Camel-case is applied
+    echo "<h1>" . ucwords(strtolower(basename($_SERVER['PHP_SELF'], ".php"))) . "</h1>"; // title of page
+    // title is dynamic from the folder name. Camel-case is applied
     
-        $dir = str_replace('html', 'docs', getcwd()); 
+    $dir = str_replace('html', 'docs', getcwd()); 
+    // echo "<p>dir = " . $dir . "<p><br>"; // show $dir
     
-        // echo "<p>dir = " . $dir . "<p><br>"; // show $dir
+    $basePath = str_repeat('../', $_SESSION['dirNum']) . 'baseIndex.php';  
     
-        $basePath = str_repeat('../', $_SESSION['dirNum']) . 'baseIndex.php';  
-    
-    echo "<a href='http://clarke-server/index.php'>Home</a><br><br>";
-    $backPage = '\\' . (end(explode('\\', dirname(__DIR__)))) . '.php';
-    // dynamic back button
-    $backButton = str_replace('C:\wamp64\www', 'http://clarke-server', dirname(__DIR__)) . $backPage;
-    //echo __DIR__ . "<br>";
-    echo "<a href='".$backButton."'>Back</a>";
+    echo "<a href='http://clarke-server/index.php'>Home</a><br><br>"; // home button
+
+    $tmp = explode('\\', dirname(__DIR__));// testing
+    $backPage = '\\' . end($tmp) . '.php';
+    $backButton = str_replace('C:\wamp64\www', 'http://clarke-server', dirname(__DIR__)) . $backPage; // back button dynamic path
+    echo "<a href='".$backButton."'>Back</a>"; // back button
     echo "<br>";
- // the following php will read the contents of the directory and display it
     
- //   echo $dir;
+    
+ // the following php will read the contents of the directory and display it
 
 $allFiles = scandir($dir);
 $files = array_diff($allFiles, array('.', '..', '.git'));

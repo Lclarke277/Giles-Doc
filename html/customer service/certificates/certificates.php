@@ -22,9 +22,16 @@
         $basePath = str_repeat('../', $_SESSION['dirNum']) . 'baseIndex.php';  
     
     echo "<a href='http://clarke-server/index.php'>Home</a><br><br>";
-    $backPage = '\\' . (end(explode('\\', dirname(__DIR__)))) . '.php';
+    
+    echo "<p>Boom: </p>";
+    print_r (explode('\\', dirname(__DIR__)));
+    $tmp = explode('\\', dirname(__DIR__));// testing
+    
+    $backPage = '\\' . end($tmp) . '.php';
     // dynamic back button
     $backButton = str_replace('C:\wamp64\www', 'http://clarke-server', dirname(__DIR__)) . $backPage;
+    
+    echo $backButton .  "<br>";
     //echo __DIR__ . "<br>";
     echo "<a href='".$backButton."'>Back</a>";
     echo "<br>";
