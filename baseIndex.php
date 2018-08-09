@@ -9,23 +9,25 @@
         <?php echo "<h1>" . basename($_SERVER['PHP_SELF'], ".php") . "</h1>";
         $dir = str_replace('html', 'docs', getcwd()); 
     
-        //echo $dir;
+        echo "<p>getcwd = " . getcwd() . "</p><br>";
     
-        $basePath = 'http://clarke-server/baseindex.html';
-    echo "<p>basePath = " . $basePath;
-    echo "<br>";
+        echo "<p>dir = " . $dir . "<p><br>";
     
-    echo "<a href='http://clarke-server/index.php'>Home</ya><br><br>";
+        $basePath = 'http://clarke-server/baseIndex.html';
+    
+    echo "<p>basePath = " . $basePath . "<br>";
+    
+    echo "<a href='http://clarke-server/index.php'>Home</ya><br><br>"; // home button
     
  // the following php will read the contents of the directory and display it
     
  //   echo $dir;
 
 $allFiles = scandir($dir);
-$files = array_diff($allFiles, array('.', '..'));
+$files = array_diff($allFiles, array('.', '..', '.git'));
 //$files2 = scandir($dir, 1);
 
-//print_r($files);
+print_r($files);
 
 $num = 2;   
 while (($num) <= (count($files)+1)){

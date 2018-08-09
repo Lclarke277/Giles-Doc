@@ -9,13 +9,15 @@
         <?php echo "<h1>" . basename($_SERVER['PHP_SELF'], ".php") . "</h1>";
         $dir = str_replace('html', 'docs', getcwd()); 
     
-        //echo $dir;
+        echo "<p>getcwd = " . getcwd() . "</p><br>";
     
-        $basePath = 'http://clarke-server/baseindex.php'; // path to baseIndex.html (golded page);
+        echo "<p>dir = " . $dir . "<p><br>";
+    
+        $basePath = 'clarke-server/baseIndex.php';
     echo "<p>basePath = " . $basePath;
     echo "<br>";
     
-    echo "<a href='http://clarke-server/index.php'>Home</ya><br><br>";
+    echo "<a href='http://clarke-server/index.php'>Home</a><br><br>";
     
  // the following php will read the contents of the directory and display it
     
@@ -47,7 +49,7 @@ while (($num) <= (count($files)+1)){
         
         $fileCreate = "./".$filename. "/" . $filename . ".php"; // create base file 
         $fileHandle = fopen($fileCreate, 'w') or die("can't open file");
-        $baseFile = file_get_contents($basePath); // file to be created in the directory
+        $baseFile = file_get_contents('clarke-server/baseIndex.php'); // file to be created in the directory
         fwrite($fileHandle, $baseFile);
         
         echo "<a href='./".$filename."/".$filename.".php'>".$filename."<a/>"; // make a link to another page
