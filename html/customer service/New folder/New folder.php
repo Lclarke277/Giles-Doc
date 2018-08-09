@@ -51,7 +51,7 @@ while (($num) <= (count($files)+1)){
         
         $fileCreate = "./".$filename. "/" . $filename . ".php"; // create base file 
         $fileHandle = fopen($fileCreate, 'w') or die("can't open file");
-        $baseFile = file_get_contents('../../../baseIndex.php'); // file to be created in the directory
+        $baseFile = file_get_contents($basePath); // file to be created in the directory
         fwrite($fileHandle, $baseFile);
         
         echo "<a href='./".$filename."/".$filename.".php'>".$filename."<a/>"; // make a link to another page
