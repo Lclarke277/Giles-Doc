@@ -7,24 +7,21 @@
 <body>
 
     <?php 
-    session_start();
-    $dirNum = $_SESSION['dirNum'] ++; // session var to pass to other pages
-    //echo "<p>dirNum = " . $dirNum;  // display $dirNum      
-    //echo "<p>session = " . $_SESSION['dirNum']; // display $_SESSION
-    
     echo "<h1>" . ucwords(strtolower(basename($_SERVER['PHP_SELF'], ".php"))) . "</h1>"; // title of page
     // title is dynamic from the folder name. Camel-case is applied
     
     $dir = str_replace('html', 'docs', getcwd()); 
+    $parDir = (substr_count($dir, '\\')) - 2;
     // echo "<p>dir = " . $dir . "<p><br>"; // show $dir
     
-    $basePath = str_repeat('../', $_SESSION['dirNum']) . 'baseIndex.php';  
+    $basePath = str_repeat('../', $parDir) . 'baseIndex.php';  
     
     echo "<a href='http://clarke-server/index.php'>Home</a><br><br>"; // home button
 
-    $tmp = explode('\\', dirname(__DIR__));// testing
+    // dynamic back button
+    $tmp = explode('\\', dirname(__DIR__));
     $backPage = '\\' . end($tmp) . '.php';
-    $backButton = str_replace('C:\wamp64\www', 'http://clarke-server', dirname(__DIR__)) . $backPage; // back button dynamic path
+    $backButton = str_replace('C:\wamp64\www', 'http://clarke-server', dirname(__DIR__)) . $backPage; // path generation
     echo "<a href='".$backButton."'>Back</a>"; // back button
     echo "<br>";
     
@@ -44,8 +41,8 @@ while (($num) <= (count($files)+1)){
 
     if (strpos($filename, ".")) { // If its a file
         
-        //echo "Dir: " . $dir . "<br>"; // Show $dir 
-        //echo "Path: " . $path . "<br>"; // show $path
+        echo "Dir: " . $dir . "<br>"; // Show $dir 
+        echo "Path: " . $path . "<br>"; // show $path
         echo "<a href='".$path."'>".$filename."<a/>"; // Make a link to the file
     
         echo "<br>";
@@ -58,6 +55,9 @@ while (($num) <= (count($files)+1)){
         $fileCreate = "./".$filename. "/" . $filename . ".php"; // create base file 
         $fileHandle = fopen($fileCreate, 'w') or die("can't open file");
         $baseFile = file_get_contents($basePath); // file to be created in the directory
+        
+        echo "<p>Basepath: </p>" . $basePath . "<br>";;
+        
         fwrite($fileHandle, $baseFile);
         
         echo "<a href='./".$filename."/".$filename.".php'>".$filename."<a/>"; // make a link to another page

@@ -6,22 +6,25 @@
     
 <body>
  
-        <?php 
-        session_start();
-        $dirNum = 2; // variable for num of dir to hop back to get to baseIndex.php
-        $_SESSION['dirNum'] = $dirNum; // session var to pass to other pages
-        //echo "<p>dirNum = " . $dirNum;  // display $dirNum      
-        //echo "<p>session = " . $_SESSION['dirNum']; // display $_SESSION
+<?php 
+    echo "<h1>" . ucwords(strtolower(basename($_SERVER['PHP_SELF'], ".php"))) . "</h1>"; // title of page
+    // title is dynamic from the folder name. Camel-case is applied
     
-        echo "<h1>" . ucwords(strtolower(basename($_SERVER['PHP_SELF'], ".php"))) . "</h1>"; // title of page
-        // title is dynamic from the folder name. Camel-case is applied
-        $dir = str_replace('html', 'docs', getcwd()); 
+    $dir = str_replace('html', 'docs', getcwd()); 
+    $parDir = (substr_count($dir, '\\')) - 2;
+    // echo "<p>dir = " . $dir . "<p><br>"; // show $dir
     
-        //echo "<p>dir = " . $dir . "<p><br>"; // show $dir
+    $basePath = str_repeat('../', $parDir) . 'baseIndex.php';  
     
-        $basePath = str_repeat('../', $_SESSION['dirNum']) . 'baseIndex.php';  
+    echo "<a href='http://clarke-server/index.php'>Home</a><br><br>"; // home button
+
+    // dynamic back button
+    $tmp = explode('\\', dirname(__DIR__));
+    $backPage = '\\' . end($tmp) . '.php';
+    $backButton = str_replace('C:\wamp64\www', 'http://clarke-server', dirname(__DIR__)) . $backPage; // path generation
+    echo "<a href='".$backButton."'>Back</a>"; // back button
+    echo "<br>";
     
-    echo "<a href='http://clarke-server/index.php'>Home</a><br><br>";
     
  // the following php will read the contents of the directory and display it
 
