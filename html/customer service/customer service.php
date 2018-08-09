@@ -17,8 +17,7 @@
         // title is dynamic from the folder name. Camel-case is applied
         $dir = str_replace('html', 'docs', getcwd()); 
     
-        echo "<p>dir = " . $dir . "<p><br>";
-        
+        //echo "<p>dir = " . $dir . "<p><br>"; // show $dir
     
         $basePath = str_repeat('../', $_SESSION['dirNum']) . 'baseIndex.php';  
     

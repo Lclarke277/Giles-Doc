@@ -17,16 +17,11 @@
     
         $dir = str_replace('html', 'docs', getcwd()); 
     
-        // echo "<p>dir = " . $dir . "<p><br>"; // show $dir
+        echo "<p>dir = " . $dir . "<p><br>";
     
         $basePath = str_repeat('../', $_SESSION['dirNum']) . 'baseIndex.php';  
     
     echo "<a href='http://clarke-server/index.php'>Home</a><br><br>";
-    echo dirname(__DIR__) . '<br>';
-    // dynamic back button
-    echo str_replace('C:\wamp64\www', 'clarke-server', dirname(__DIR__)) . '\customer service.php' . "<br>";
-    //echo __DIR__ . "<br>";
-    echo "<a href='../'>Back</a><br><br>";
     
  // the following php will read the contents of the directory and display it
     
@@ -70,7 +65,7 @@ while (($num) <= (count($files)+1)){
     
 
 ?>
-     <h2>This was copied from baseIndex</h2>
+    <h2>This was copied from baseIndex</h2>
        
 </body>
 
