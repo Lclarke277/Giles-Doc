@@ -11,9 +11,7 @@
     // title is dynamic from the folder name. Camel-case is applied
     
     $dir = str_replace('html', 'docs', getcwd()); 
-    $parDir = (substr_count($dir, '\\')) - 2;
-    // echo "<p>dir = " . $dir . "<p><br>"; // show $dir
-    
+    $parDir = (substr_count($dir, '\\')) - 2; // variable to find out how to get back to baseIndex.php 
     $basePath = str_repeat('../', $parDir) . 'baseIndex.php';  
     
     echo "<a href='http://clarke-server/index.php'>Home</a><br><br>"; // home button
@@ -41,8 +39,8 @@ while (($num) <= (count($files)+1)){
 
     if (strpos($filename, ".")) { // If its a file
         
-        echo "Dir: " . $dir . "<br>"; // Show $dir 
-        echo "Path: " . $path . "<br>"; // show $path
+        // echo "Dir: " . $dir . "<br>"; // Show $dir 
+        // echo "Path: " . $path . "<br>"; // show $path
         echo "<a href='".$path."'>".$filename."<a/>"; // Make a link to the file
     
         echo "<br>";
@@ -55,9 +53,6 @@ while (($num) <= (count($files)+1)){
         $fileCreate = "./".$filename. "/" . $filename . ".php"; // create base file 
         $fileHandle = fopen($fileCreate, 'w') or die("can't open file");
         $baseFile = file_get_contents($basePath); // file to be created in the directory
-        
-        echo "<p>Basepath: </p>" . $basePath . "<br>";;
-        
         fwrite($fileHandle, $baseFile);
         
         echo "<a href='./".$filename."/".$filename.".php'>".$filename."<a/>"; // make a link to another page
