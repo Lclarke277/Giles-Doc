@@ -9,13 +9,11 @@
         <?php echo "<h1>" . basename($_SERVER['PHP_SELF'], ".php") . "</h1>";
         $dir = str_replace('html', 'docs', getcwd()); 
     
-        echo "<p>getcwd = " . getcwd() . "</p><br>";
+        //echo "<p>getcwd = " . getcwd() . "</p><br>";
     
-        echo "<p>dir = " . $dir . "<p><br>";
+        //echo "<p>dir = " . $dir . "<p><br>";
     
         $basePath = '../../baseIndex.php';
-    echo "<p>basePath = " . $basePath;
-    echo "<br>";
     
     echo "<a href='http://clarke-server/index.php'>Home</a><br><br>";
     
@@ -36,9 +34,8 @@ while (($num) <= (count($files)+1)){
     
     if (strpos($filename, ".")) { // If its a file
         
-        //echo $path;
-        echo "<br>Dir: " . $dir . "<br>";
-        echo "<br>Path: " . $path . "<br>";
+        //echo "<br>Dir: " . $dir . "<br>";
+        //cho "<br>Path: " . $path . "<br>";
         echo "<a href='http://clarke-server/docs/".$path."'>".$filename."<a/>"; // Make a link to the file
         
         //echo "<br><a href='http://clarke-server/docs/customer%20service/Signed%20NAFTA%202018.pdf'>testing</a>";

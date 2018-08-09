@@ -9,13 +9,13 @@
         <?php echo "<h1>" . basename($_SERVER['PHP_SELF'], ".php") . "</h1>";
         $dir = str_replace('html', 'docs', getcwd()); 
     
-        echo "<p>getcwd = " . getcwd() . "</p>";
+        //echo "<p>getcwd = " . getcwd() . "</p>";
     
-        echo "<p>dir = " . $dir . "<p><br>";
+        //echo "<p>dir = " . $dir . "<p><br>";
     
         $basePath = 'http://clarke-server/baseIndex.html';
     
-    echo "<p>basePath = " . $basePath . "<br>";
+    //echo "<p>basePath = " . $basePath . "<br>";
     
     echo "<a href='http://clarke-server/index.php'>Home</ya><br><br>"; // home button
     
@@ -27,7 +27,7 @@ $allFiles = scandir($dir);
 $files = array_diff($allFiles, array('.', '..', '.git'));
 //$files2 = scandir($dir, 1);
 
-print_r($files);
+//print_r($files);
 
 $num = 2;   
 while (($num) <= (count($files)+1)){
