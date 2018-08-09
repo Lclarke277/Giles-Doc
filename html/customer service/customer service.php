@@ -6,24 +6,22 @@
     
 <body>
  
-<?php 
+    <?php 
     echo "<h1>" . ucwords(strtolower(basename($_SERVER['PHP_SELF'], ".php"))) . "</h1>"; // title of page
     // title is dynamic from the folder name. Camel-case is applied
     
     $dir = str_replace('html', 'docs', getcwd()); 
-    $parDir = (substr_count($dir, '\\')) - 2;
-    // echo "<p>dir = " . $dir . "<p><br>"; // show $dir
-    
+    $parDir = (substr_count($dir, '\\')) - 2; // variable to find out how to get back to baseIndex.php 
     $basePath = str_repeat('../', $parDir) . 'baseIndex.php';  
     
-    echo "<a href='http://clarke-server/index.php'>Home</a><br><br>"; // home button
+    echo "<a href='http://clarke-server/index.php'>Home</a><br>"; // home button
 
     // dynamic back button
     $tmp = explode('\\', dirname(__DIR__));
     $backPage = '\\' . end($tmp) . '.php';
     $backButton = str_replace('C:\wamp64\www', 'http://clarke-server', dirname(__DIR__)) . $backPage; // path generation
     echo "<a href='".$backButton."'>Back</a>"; // back button
-    echo "<br>";
+    echo "<br><br>";
     
     
  // the following php will read the contents of the directory and display it

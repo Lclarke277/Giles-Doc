@@ -14,14 +14,14 @@
     $parDir = (substr_count($dir, '\\')) - 2; // variable to find out how to get back to baseIndex.php 
     $basePath = str_repeat('../', $parDir) . 'baseIndex.php';  
     
-    echo "<a href='http://clarke-server/index.php'>Home</a><br><br>"; // home button
+    echo "<a href='http://clarke-server/index.php'>Home</a><br>"; // home button
 
     // dynamic back button
     $tmp = explode('\\', dirname(__DIR__));
     $backPage = '\\' . end($tmp) . '.php';
     $backButton = str_replace('C:\wamp64\www', 'http://clarke-server', dirname(__DIR__)) . $backPage; // path generation
     echo "<a href='".$backButton."'>Back</a>"; // back button
-    echo "<br>";
+    echo "<br><br>";
     
     
  // the following php will read the contents of the directory and display it
