@@ -22,12 +22,12 @@
         $basePath = str_repeat('../', $_SESSION['dirNum']) . 'baseIndex.php';  
     
     echo "<a href='http://clarke-server/index.php'>Home</a><br><br>";
-    echo dirname(__DIR__) . '<br>';
+    $backPage = '\\' . (end(explode('\\', dirname(__DIR__)))) . '.php';
     // dynamic back button
-    echo str_replace('C:\wamp64\www', 'clarke-server', dirname(__DIR__)) . '\customer service.php' . "<br>";
+    $backButton = str_replace('C:\wamp64\www', 'http://clarke-server', dirname(__DIR__)) . $backPage;
     //echo __DIR__ . "<br>";
-    echo "<a href='../'>Back</a><br><br>";
-    
+    echo "<a href='".$backButton."'>Back</a>";
+    echo "<br>";
  // the following php will read the contents of the directory and display it
     
  //   echo $dir;
