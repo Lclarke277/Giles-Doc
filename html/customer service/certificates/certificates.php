@@ -14,6 +14,10 @@
     $parDir = (substr_count($dir, '\\')) - 2; // variable to find out how to get back to baseIndex.php 
     $basePath = str_repeat('../', $parDir) . 'baseIndex.php'; 
     $baseSheet = str_repeat('../', $parDir) . 'baseStylesheet.css';
+    $logoPath = str_repeat('../', $parDir) . '/media/';
+    
+    echo "<img class='giles-logo' src=".$logoPath."giles-white.png>"; // giles corner logo
+    echo "<img class='premag-logo' src=".$logoPath."premag-white.png>"; // premag corner logo
     
     echo "<div class='buttons'>";
     echo "<div class='button-container'>";

@@ -1,7 +1,7 @@
 <html>
     
 <head>
-  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
     
 <body>
@@ -12,15 +12,21 @@
     
     $dir = str_replace('html', 'docs', getcwd()); 
     $parDir = (substr_count($dir, '\\')) - 2; // variable to find out how to get back to baseIndex.php 
-    $basePath = str_repeat('../', $parDir) . 'baseIndex.php';  
+    $basePath = str_repeat('../', $parDir) . 'baseIndex.php'; 
+    $baseSheet = str_repeat('../', $parDir) . 'baseStylesheet.css';
     
-    echo "<a href='http://clarke-server/index.php'>Home</a><br>"; // home button
+    echo "<div class='buttons'>";
+    echo "<div class='button-container'>";
+        echo "<a class='button' href='http://clarke-server/index.php'>Home</a>"; // home button
 
-    // dynamic back button
-    $tmp = explode('\\', dirname(__DIR__));
-    $backPage = '\\' . end($tmp) . '.php';
-    $backButton = str_replace('C:\wamp64\www', 'http://clarke-server', dirname(__DIR__)) . $backPage; // path generation
-    echo "<a href='".$backButton."'>Back</a>"; // back button
+        // dynamic back button
+        $tmp = explode('\\', dirname(__DIR__));
+        $backPage = '\\' . end($tmp) . '.php';
+        $backButton = str_replace('C:\wamp64\www', 'http://clarke-server', dirname(__DIR__)) . $backPage; // path generation
+        echo "<a class='button' href='".$backButton."'>Back</a>"; // back button
+    echo "</div>";
+    echo "</div>"; // div.buttons
+    
     echo "<br><br>";
     
     
@@ -28,25 +34,24 @@
 
 $allFiles = scandir($dir);
 $files = array_diff($allFiles, array('.', '..', '.git'));
-//$files2 = scandir($dir, 1);
-
-//print_r($files);
-
+    
+    echo "<div class='file-container'>";
+    echo "<div class='files-folders'>";
+        
 $num = 2;   
 while (($num) <= (count($files)+1)){
     $filename = $files[$num];
     $path = str_replace('C:\wamp64\www', 'http://clarke-server', $dir . '/' . $filename); //
 
-    if (strpos($filename, ".")) { // If its a file
+    if (strpos($filename, ".")) { // If its a file do the following
         
         // echo "Dir: " . $dir . "<br>"; // Show $dir 
         // echo "Path: " . $path . "<br>"; // show $path
-        echo "<a href='".$path."'>".$filename."<a/>"; // Make a link to the file
+        echo "<a class='file' href='".$path."'><div class='file'></div>". ucwords($filename)."<a/>"; // Make a link to the file
     
-        echo "<br>";
         
-    } else { // else if its a folder
-        if (!file_exists("./" . $filename)){ // create html folder if it doens't exists
+    } else { // else (if its a folder) do the follwoing
+        if (!file_exists("./" . $filename)){ // create folder in www/html/ if it doens't exists
             mkdir("./" . $filename, 0700);
         }
         
@@ -55,13 +60,14 @@ while (($num) <= (count($files)+1)){
         $baseFile = file_get_contents($basePath); // file to be created in the directory
         fwrite($fileHandle, $baseFile);
         
-        echo "<a href='./".$filename."/".$filename.".php'>".$filename."<a/>"; // make a link to another page
-    
-        echo "<br>";
-    } // else
+        echo "<a class='folder' href='./".$filename."/".$filename.".php'><div class='folder'></div>".ucwords($filename)."<a/>"; // make a link to another page (camelcase)
+        
+    } // end else
     $num++;
-}  // while  
-    
+}  // end while  
+    echo "</div>"; // end of div.files-folders
+    echo "</div>"; // end of div.files-container
+    echo "<link rel='stylesheet' type='text/css' href=" . $baseSheet . ">"; // dynamic link to baseStylesheet.css
 ?>
        
 </body>

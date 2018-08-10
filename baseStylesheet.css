@@ -1,7 +1,23 @@
 html, body {
     margin: 0;
     padding: 0;
-    background-image: url(media/gradientBackground.jpeg);
+    background-image: url(media/gradientBackground.jpg);
+}
+
+img.giles-logo {
+    height: 75px;
+    display: inline-block;
+    position: fixed;
+    top: 40px;
+    left: 10px;
+}
+
+img.premag-logo {
+    height: 75px;
+    display: inline-block;
+    position: fixed;
+    top: 45px;
+    right: 10px;
 }
 
 div.file-container {
@@ -40,6 +56,7 @@ div.button-container {
 }
 
 a.button {
+    border: 1px solid black;
     font-size: 24px;
     color: white;
    /* border: solid 1px white; */
@@ -55,6 +72,7 @@ a.button {
 }
 
 a.button:hover {
+    border: 1px solid rgba(97, 97, 97, 1);
     color: rgba(97, 97, 97, 1);
   /*  border: solid 1px rgba(97, 97, 97, 1); */
     -o-transition:.3s;
@@ -64,6 +82,7 @@ a.button:hover {
 }
 
 a.folder, a.file {
+    border-radius: 3px;
     color: white;
     font-size: 27px;
     display: block;
@@ -74,6 +93,7 @@ a.folder, a.file {
 }
 
 a.folder:hover, a.file:hover {
+    border-radius: 3px;
     color: rgba(97, 97, 97, 1);
 }
 
