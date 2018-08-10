@@ -5,7 +5,7 @@ html, body {
 }
 
 img.giles-logo {
-    height: 75px;
+    height: 85px;
     display: inline-block;
     position: fixed;
     top: 40px;
@@ -20,17 +20,31 @@ img.premag-logo {
     right: 10px;
 }
 
+img.redline {
+    width: 400px;
+    display: inline-block;
+    position: fixed;
+    top: 105px;
+    left: 50%;
+    margin-left: -200px;
+}
+
+h1, p, a {
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+}
+
 div.file-container {
     position: relative;
     overflow-y:auto;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.5);
     width: 100%;
     height: 70%;
     padding: 10px 0;
 }
 
 div.files-folders {
-    width: 550px;
+    width: 600px;
     margin: 0 auto;
     display: block;
 }
@@ -64,7 +78,7 @@ a.button {
     padding: 7px 15px;
     display:inline-block;
     float: left;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.5);
     -o-transition:.3s;
     -ms-transition:.3s;
     -moz-transition:.3s;
@@ -111,9 +125,4 @@ div.folder {
     width: 38px;
     height: 30px;
     display:inline-block;
-}
-
-h1, p, a {
-    font-family: 'Roboto', sans-serif;
-    text-decoration: none;
 }

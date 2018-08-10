@@ -78,6 +78,15 @@ div#table {
     padding-top: 0px;
 }
 
+img.redline {
+    width: 400px;
+    display: inline-block;
+    position: fixed;
+    top: 258px;
+    right: 50%;
+    margin-right: -200px;
+}
+
 video {
 /*  making the video fullscreen  */
   position: fixed;

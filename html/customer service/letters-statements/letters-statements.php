@@ -18,6 +18,7 @@
     
     echo "<img class='giles-logo' src=".$logoPath."giles-white.png>"; // giles corner logo
     echo "<img class='premag-logo' src=".$logoPath."premag-white.png>"; // premag corner logo
+    echo "<img class='redline' src=".$logoPath."line-red.png>"; // premag corner logo
     
     echo "<div class='buttons'>";
     echo "<div class='button-container'>";
