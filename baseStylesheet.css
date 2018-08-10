@@ -21,12 +21,20 @@ img.premag-logo {
 }
 
 img.redline {
-    width: 400px;
+    width: 350px;
     display: inline-block;
     position: fixed;
-    top: 105px;
+    top: 95px;
     left: 50%;
-    margin-left: -200px;
+    margin-left: -175px;
+}
+
+img.isLogo {
+    width: 200px;
+    position: fixed;
+    bottom: 5px;
+    left: 50%;
+    margin-left: -100px;
 }
 
 h1, p, a {
@@ -35,6 +43,8 @@ h1, p, a {
 }
 
 div.file-container {
+    border-top: 1px solid rgba(170, 0, 0, 0.8);
+    border-bottom: 1px solid rgba(170, 0, 0, 0.8);
     position: relative;
     overflow-y:auto;
     background-color: rgba(0, 0, 0, 0.5);
@@ -50,7 +60,9 @@ div.files-folders {
 }
 
 h1 {
-    font-size: 40px;
+    margin-top: -25px;
+    margin-bottom: 20px;
+    font-size: 55px;
     color: white;
     padding-top: 50px;
     text-align: center;
