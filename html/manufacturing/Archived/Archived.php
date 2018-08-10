@@ -14,6 +14,13 @@
     $parDir = (substr_count($dir, '\\')) - 2; // variable to find out how to get back to baseIndex.php 
     $basePath = str_repeat('../', $parDir) . 'baseIndex.php'; 
     $baseSheet = str_repeat('../', $parDir) . 'baseStylesheet.css';
+    $logoPath = str_repeat('../', $parDir) . '/media/';
+    
+    echo "<img class='giles-logo' src=".$logoPath."giles-white.png>"; // giles corner logo
+    echo "<img class='premag-logo' src=".$logoPath."premag-white.png>"; // premag corner logo
+    echo "<img class='redline' src=".$logoPath."line-red.png>"; // premag corner logo
+    echo "<img class='isLogo' src=".$logoPath."isLogo.png>"; // IS corner logo
+    
     
     echo "<div class='buttons'>";
     echo "<div class='button-container'>";
@@ -69,7 +76,9 @@ while (($num) <= (count($files)+1)){
     echo "</div>"; // end of div.files-container
     echo "<link rel='stylesheet' type='text/css' href=" . $baseSheet . ">"; // dynamic link to baseStylesheet.css
 ?>
-       
+  
+    
+    
 </body>
 
 </html>

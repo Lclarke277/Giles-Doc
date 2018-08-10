@@ -60,6 +60,7 @@ div.files-folders {
 }
 
 h1 {
+    text-shadow: 2px 4px 15px rgba(0, 0, 0, 0.5);
     margin-top: -25px;
     margin-bottom: 20px;
     font-size: 55px;
