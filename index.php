@@ -7,8 +7,12 @@
     
 <body>
     
+    
     <div>
-        <h1 id='title'>Gile Chemical Document System &amp; Intranet Site</h1>
+        
+        
+        <img id='giles-logo' src="media/giles-white.png">
+        <h1 id='title'>Document System <br>And Intranet Site</h1>
         
     </div>
     
@@ -47,6 +51,12 @@
     
     </table>
     </div>
+    
+    <img id=isLogo src="media/isLogo.png">
+    
+    <video autoplay loop plays-inline muted>
+        <source src="media/videoBack.webm" type="video/webm">
+    </video>
     
     
 </body>

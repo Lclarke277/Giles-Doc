@@ -1,0 +1,13 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+div.files {
+    background-color: rgba (0, 0, 0, 0.7);
+}
+
+h1, p, a {
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+}

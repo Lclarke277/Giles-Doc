@@ -1,7 +1,8 @@
 <html>
     
 <head>
-  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <link rel="stylesheet" type="text/css" href="baseStylesheet.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
     
 <body>
@@ -28,16 +29,15 @@
 
 $allFiles = scandir($dir);
 $files = array_diff($allFiles, array('.', '..', '.git'));
-//$files2 = scandir($dir, 1);
 
-//print_r($files);
+    echo "<div class=files>";
 
 $num = 2;   
 while (($num) <= (count($files)+1)){
     $filename = $files[$num];
     $path = str_replace('C:\wamp64\www', 'http://clarke-server', $dir . '/' . $filename); //
 
-    if (strpos($filename, ".")) { // If its a file
+    if (strpos($filename, ".")) { // If its a file do the following
         
         // echo "Dir: " . $dir . "<br>"; // Show $dir 
         // echo "Path: " . $path . "<br>"; // show $path
@@ -45,8 +45,8 @@ while (($num) <= (count($files)+1)){
     
         echo "<br>";
         
-    } else { // else if its a folder
-        if (!file_exists("./" . $filename)){ // create html folder if it doens't exists
+    } else { // else (if its a folder) do the follwoing
+        if (!file_exists("./" . $filename)){ // create folder in www/html/ if it doens't exists
             mkdir("./" . $filename, 0700);
         }
         
@@ -56,11 +56,15 @@ while (($num) <= (count($files)+1)){
         fwrite($fileHandle, $baseFile);
         
         echo "<a href='./".$filename."/".$filename.".php'>".$filename."<a/>"; // make a link to another page
+        
+         echo "<p>WHAT: " . $fileCreate . "</p>";
     
         echo "<br>";
-    } // else
+    } // end else
     $num++;
-}  // while  
+}  // end while  
+    
+    echo "</div>"; // end files div
     
 ?>
        

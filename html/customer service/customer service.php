@@ -2,6 +2,7 @@
     
 <head>
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
     
 <body>
@@ -30,8 +31,7 @@ $allFiles = scandir($dir);
 $files = array_diff($allFiles, array('.', '..'));
 //$files2 = scandir($dir, 1);
 
-//print_r($files);
-
+echo "<div id='foldersFiles'>";
 $num = 2;   
 while (($num) <= (count($files)+1)){
     $filename = $files[$num];
@@ -63,7 +63,7 @@ while (($num) <= (count($files)+1)){
     } // else
     $num++;
 }  // while  
-    
+echo "</div>"; // foldersFiles Div    
 
 ?>
        
