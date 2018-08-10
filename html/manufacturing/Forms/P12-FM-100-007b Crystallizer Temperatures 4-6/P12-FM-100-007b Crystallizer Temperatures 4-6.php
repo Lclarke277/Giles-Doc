@@ -66,6 +66,7 @@ while (($num) <= (count($files)+1)){
     $num++;
 }  // end while  
     echo "</div>"; // end of div.files-folders
+    echo "<div class='fade'></div>";
     echo "</div>"; // end of div.files-container
     echo "<link rel='stylesheet' type='text/css' href=" . $baseSheet . ">"; // dynamic link to baseStylesheet.css
 ?>

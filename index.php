@@ -10,7 +10,6 @@
     
     <div>
         
-        
         <img id='giles-logo' src="media/giles-white.png">
         <h1 id='title'>Document System <br>And Intranet Site</h1>
         
