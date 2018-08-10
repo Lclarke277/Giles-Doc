@@ -47,9 +47,8 @@ while (($num) <= (count($files)+1)){
         
         // echo "Dir: " . $dir . "<br>"; // Show $dir 
         // echo "Path: " . $path . "<br>"; // show $path
-        echo "<a class='file' href='".$path."'>". ucwords($filename)."<a/>"; // Make a link to the file
+        echo "<a class='file' href='".$path."'><div class='file'></div>". ucwords($filename)."<a/>"; // Make a link to the file
     
-        echo "<br>";
         
     } else { // else (if its a folder) do the follwoing
         if (!file_exists("./" . $filename)){ // create folder in www/html/ if it doens't exists
@@ -61,9 +60,8 @@ while (($num) <= (count($files)+1)){
         $baseFile = file_get_contents($basePath); // file to be created in the directory
         fwrite($fileHandle, $baseFile);
         
-        echo "<a class='folder' href='./".$filename."/".$filename.".php'>".ucwords($filename)."<a/>"; // make a link to another page (camelcase)
+        echo "<a class='folder' href='./".$filename."/".$filename.".php'><div class='folder'></div>".ucwords($filename)."<a/>"; // make a link to another page (camelcase)
         
-        echo "<br>";
     } // end else
     $num++;
 }  // end while  
