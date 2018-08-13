@@ -24,13 +24,13 @@
     
     echo "<div class='buttons'>";
     echo "<div class='button-container'>";
-        echo "<a class='button' href='http://clarke-server/index.php'>Home</a>"; // home button
+        echo "<a class='button' href='http://lclarkeserver.ddns.net/index.php'>Home</a>"; // home button
 
         // dynamic back button
         $tmp = explode('\\', dirname(__DIR__));
         $backPage = '\\' . end($tmp) . '.php';
-        $backButton = str_replace('C:\wamp64\www', 'http://clarke-server', dirname(__DIR__)) . $backPage; // path generation
-        echo "<a class='button' href='http://clarke-server/'>Back</a>"; // back button
+        $backButton = str_replace('C:\wamp64\www', 'http://lclarkeserver.ddns.net', dirname(__DIR__)) . $backPage; // path generation
+        echo "<a class='button' href='http://lclarkeserver.ddns.net/'>Back</a>"; // back button
     echo "</div>";
     echo "</div>"; // div.buttons
     
@@ -48,7 +48,7 @@ $files = array_diff($allFiles, array('.', '..', '.git'));
 $num = 2;   
 while (($num) <= (count($files)+1)){
     $filename = $files[$num];
-    $path = str_replace('C:\wamp64\www', 'http://clarke-server', $dir . '/' . $filename); //
+    $path = str_replace('C:\wamp64\www', 'http://lclarkeserver.ddns.net', $dir . '/' . $filename); //
 
     if (strpos($filename, ".")) { // If its a file do the following
         
