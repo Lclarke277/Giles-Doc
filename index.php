@@ -56,7 +56,8 @@
                                } // while
     $maxDir = $maxDir - 2; // end of Max Dir Alg
     
-    
+    $num2 = 0;
+    while ($num2 < $maxDir) {
     // the make a link to each sub director under the respective header
     echo "<tr>";
     $num = 0;
@@ -66,15 +67,15 @@
         unset($subdir[1]);
         $subdir = array_values($subdir);
 
-            if (empty($subdir[0])) { // if the value is empty, make it null to avoid error
-                $subdir[0] = "";
+            if (empty($subdir[$num2])) { // if the value is empty, make it null to avoid error
+                $subdir[$num2] = "";
             }
-        
-        echo "<td>" . $subdir[0] . "</td>";
+        echo "<td>" . $subdir[$num2] . "</td>";
         $num++;
     };
     echo "</tr>";
-    
+    $num2++;
+    } // while
     
     echo "</table>
           </div>";
