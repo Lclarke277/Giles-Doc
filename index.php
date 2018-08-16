@@ -22,9 +22,10 @@
     unset($headers[0]); // remove first value of scandir '.'
     unset($headers[1]); // rmeove second value of scandir '..'
     $headers = array_values($headers); // reinitialize the array
-   
-    echo "<table>";
-    echo "<tr>";
+    
+    echo "<div id=table>
+          <table>
+          <tr>";
     
     // the following creates a table header for each folder in the docs directory
     $num = 0;   
@@ -35,6 +36,27 @@
     
     echo "</tr>";
     
+    // Max Dir Alg: algorithim to find the max count of all the header subdirectories
+    $num = 0;
+    while ($num < count($num)) {
+        $maxDir = count(scandir($rootPath . '\\' . $headers[$num]));
+        $nextDir = count(scandir($rootPath . '\\' . $headers[$num + 1]));
+        
+        if (empty($nextDir)) {
+            break; } 
+        
+        else {        
+    if ($nextDir > $maxDir) {
+            $maxDir = $nextDir;
+            $num++; } 
+    else {
+        $num++;
+    }
+             } // 1st else
+                               } // while
+    $maxDir = $maxDir - 2; // end of Max Dir Alg
+    
+    
     // the make a link to each sub director under the respective header
     echo "<tr>";
     $num = 0;
@@ -44,13 +66,21 @@
         unset($subdir[1]);
         $subdir = array_values($subdir);
 
-        //print_r($subdir); echo "<br>";
+            if (empty($subdir[0])) { // if the value is empty, make it null to avoid error
+                $subdir[0] = "";
+            }
+        
         echo "<td>" . $subdir[0] . "</td>";
         $num++;
     };
     echo "</tr>";
     
+    
+    echo "</table>
+          </div>";
     ?>
+    
+    
 <!--
     <div id=table>
     <table>
