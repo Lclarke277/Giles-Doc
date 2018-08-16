@@ -16,13 +16,42 @@
         
     </div>
     
-    <?php 
-        $headers = scandir('.\docs'); // get array of files in the docs dir
-        $headers = array_diff($headers, array('.', '..', '.git')); // exclude these files from the array
-        print_r($headers);
+<?php 
+    $rootPath = '.\docs'; // variable for location of root
+    $headers = scandir($rootPath); // get array of files in the docs dir
+    unset($headers[0]); // remove first value of scandir '.'
+    unset($headers[1]); // rmeove second value of scandir '..'
+    $headers = array_values($headers); // reinitialize the array
+   
+    echo "<table>";
+    echo "<tr>";
+    
+    // the following creates a table header for each folder in the docs directory
+    $num = 0;   
+    while (($num) <= (count($headers))-1){
+        echo "<th>" . $headers[$num] . "</th>";
+        $num++;
+    }
+    
+    echo "</tr>";
+    
+    // the make a link to each sub director under the respective header
+    echo "<tr>";
+    $num = 0;
+    while (($num) <= (count($headers))-1){
+        $subdir = scandir($rootPath . '\\' . $headers[$num]);
+        unset($subdir[0]);
+        unset($subdir[1]);
+        $subdir = array_values($subdir);
+
+        //print_r($subdir); echo "<br>";
+        echo "<td>" . $subdir[0] . "</td>";
+        $num++;
+    };
+    echo "</tr>";
     
     ?>
-    
+<!--
     <div id=table>
     <table>
         <tr>
@@ -58,7 +87,7 @@
     
     </table>
     </div>
-    
+ -->   
     <img id=isLogo src="media/isLogo.png">
     
     <video autoplay loop plays-inline muted>
