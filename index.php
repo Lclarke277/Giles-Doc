@@ -16,6 +16,13 @@
         
     </div>
     
+    <?php 
+        $headers = scandir('.\docs'); // get array of files in the docs dir
+        $headers = array_diff($headers, array('.', '..', '.git')); // exclude these files from the array
+        print_r($headers);
+    
+    ?>
+    
     <div id=table>
     <table>
         <tr>
@@ -26,7 +33,7 @@
         <tr>
             <td><a href="html/customer%20service/customer%20service.php">Customer Service</a></td>
             <td><a href="">Manufacturing</a></td>
-            <td><a href="html/maintenance/maintenance.php">Maintenance</a></td>
+            <td><a href="">Maintenance</a></td>
         </tr>
         <tr>
             <td><a href="">IT Support</a></td>
