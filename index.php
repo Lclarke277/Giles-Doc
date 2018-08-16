@@ -17,8 +17,9 @@
     </div>
     
 <?php 
-    $rootPath = '.\docs'; // variable for location of root
-    $headers = scandir($rootPath); // get array of files in the docs dir
+    $docPath = '.\docs'; // variable for location of document files
+    $htmlPath = '.\html'; // variable for location of html files
+    $headers = scandir($docPath); // get array of files in the docs dir
     unset($headers[0]); // remove first value of scandir '.'
     unset($headers[1]); // rmeove second value of scandir '..'
     $headers = array_values($headers); // reinitialize the array
@@ -39,8 +40,8 @@
     // Max Dir Alg: algorithim to find the max count of all the header subdirectories
     $num = 0;
     while ($num < count($num)) {
-        $maxDir = count(scandir($rootPath . '\\' . $headers[$num]));
-        $nextDir = count(scandir($rootPath . '\\' . $headers[$num + 1]));
+        $maxDir = count(scandir($docPath . '\\' . $headers[$num]));
+        $nextDir = count(scandir($docPath . '\\' . $headers[$num + 1]));
         
         if (empty($nextDir)) {
             break; } 
@@ -54,7 +55,7 @@
     }
              } // 1st else
                                } // while
-    $maxDir = $maxDir - 2; // end of Max Dir Alg
+    $maxDir = $maxDir - 2; // end of Max Dir Alg 
     
     $num2 = 0;
     while ($num2 < $maxDir) {
@@ -62,7 +63,7 @@
     echo "<tr>";
     $num = 0;
     while (($num) <= (count($headers))-1){
-        $subdir = scandir($rootPath . '\\' . $headers[$num]);
+        $subdir = scandir($docPath . '\\' . $headers[$num]);
         unset($subdir[0]);
         unset($subdir[1]);
         $subdir = array_values($subdir);
@@ -70,7 +71,8 @@
             if (empty($subdir[$num2])) { // if the value is empty, make it null to avoid error
                 $subdir[$num2] = "";
             }
-        echo "<td>" . $subdir[$num2] . "</td>";
+        $htmlLink = $htmlPath . '\\' . $headers[$num] . '\\' . $subdir[$num2] . '\\' . $subdir[$num2] . '.php';
+        echo "<td><a href='" . $htmlLink . "'>" . $subdir[$num2] . "</a></td>";
         $num++;
     };
     echo "</tr>";
