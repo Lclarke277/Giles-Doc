@@ -14,12 +14,12 @@
     $parDir = (substr_count($dir, '\\')) - 2; // variable to find out how to get back to baseIndex.php 
     $basePath = str_repeat('../', $parDir) . 'baseIndex.php';  
     
-    echo "<a href='http://lclarkeserver.ddns.net/index.php'>Home</a><br><br>"; // home button
+    echo "<a href='http://clarke-server/index.php'>Home</a><br><br>"; // home button
 
     // dynamic back button
     $tmp = explode('\\', dirname(__DIR__));
     $backPage = '\\' . end($tmp) . '.php';
-    $backButton = str_replace('C:\wamp64\www', 'http://lclarkeserver.ddns.net', dirname(__DIR__)) . $backPage; // path generation
+    $backButton = str_replace('C:\wamp64\www', 'http://clarke-server', dirname(__DIR__)) . $backPage; // path generation
     echo "<a href='".$backButton."'>Back</a>"; // back button
     echo "<br>";
     
@@ -35,7 +35,7 @@ $files = array_diff($allFiles, array('.', '..', '.git'));
 $num = 2;   
 while (($num) <= (count($files)+1)){
     $filename = $files[$num];
-    $path = str_replace('C:\wamp64\www', 'http://lclarkeserver.ddns.net', $dir . '/' . $filename); //
+    $path = str_replace('C:\wamp64\www', 'http://clarke-server', $dir . '/' . $filename); //
 
     if (strpos($filename, ".")) { // If its a file
         
