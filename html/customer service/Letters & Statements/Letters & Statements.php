@@ -54,7 +54,7 @@ while (($num) <= (count($files)+1)){
         
         // echo "Dir: " . $dir . "<br>"; // Show $dir 
         // echo "Path: " . $path . "<br>"; // show $path
-        echo "<a class='file' href='".$path."'><div class='file'></div>". ucwords($filename)."<a/>"; // Make a link to the file
+        echo "<a class='file' href='".$path."' rel='noopener noreferrer' target='_blank''><div class='file'></div>". ucwords($filename)."<a/>"; // Make a link to the file
     
         
     } else { // else (if its a folder) do the follwoing
