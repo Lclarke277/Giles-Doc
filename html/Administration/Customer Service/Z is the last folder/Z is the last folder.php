@@ -47,48 +47,50 @@
     echo "<br>";
     
 if(!function_exists('sort_dir_files')) { // will get function already exists error without this
-    function sort_dir_files($dir) {
+    function sortDirFiles($dir) { // $file is array of all files in the dir
         $sortedData = array();
-        foreach(scandir($dir) as $file)
-        {
+        $files = array();
+        $folders = array();
+        foreach(scandir($dir) as $file) {
                 if(is_file($dir.'/'.$file))
-                        array_push($sortedData, $file);
+                        array_push($files, $file);
                 else
-                        array_unshift($sortedData, $file);
+                        array_unshift($folders, $file);
         }
-        return $sortedData;
+        return $files;
     }
 }
-    $allFiles = scandir($dir);
-    unset($allFiles[0]);
-    unset($allFiles[1]);
-    $allFiles = array_values($allFiles); 
-    $newDir = sort_dir_files($dir);
-    print_r($newDir);
-    //print_r($allFiles);
     
+if(!function_exists('sort_dir_files')) { // will get function already exists error without this
+    function sortDirFolders($dir) { // $folders is an array of all folders in the dir
+        $sortedData = array();
+        $files = array();
+        $folders = array();
+        foreach(scandir($dir) as $file) {
+                if(is_file($dir.'/'.$file))
+                        array_push($files, $file);
+                else
+                        array_push($folders, $file);
+        }
+        return $folders;
+    }
+}    
+    $dirFiles = sortDirFiles($dir); // array of files in the dir
+    
+    $dirFolders = sortDirFolders($dir); // array of folders in the dir 
+    unset($dirFolders[0]); // remove the '.' system dir
+    unset($dirFolders[1]); // remove the '..' system dir
+    $dirFolders = array_values($dirFolders);  // reindex the array
+    
+    echo "<br>";
     echo "<br><br>";
-    
-    
- // the following php will read the contents of the directory and display it
 
-    
     echo "<div class='file-container'>";
     echo "<div class='files-folders'>";
-        
-$num = 0;   
-while (($num) <= (count($allFiles)-1)){
-    $filename = $newDir[$num];
-    $path = str_replace('C:\wamp64\www', 'http://clarke-server', $dir . '/' . $filename); //
-
-    if (strpos($filename, ".")) { // If its a file do the following
-        
-        // echo "Dir: " . $dir . "<br>"; // Show $dir 
-        // echo "Path: " . $path . "<br>"; // show $path
-        echo "<a class='file' href='".$path."' rel='noopener noreferrer' target='_blank''><div class='file'></div>". ucwords($filename)."<a/>"; // Make a link to the file
     
-        
-    } else { // else (if its a folder) do the follwoing
+$num = 0;   // displaying folders in alphabetical order
+while (($num) <= (count($dirFolders)-1)){ // else (if its a folder) do the follwoing
+        $filename = $dirFolders[$num];
         if (!file_exists("./" . $filename)){ // create folder in www/html/ if it doens't exists
             mkdir("./" . $filename, 0700);
         }
@@ -99,10 +101,22 @@ while (($num) <= (count($allFiles)-1)){
         fwrite($fileHandle, $baseFile);
         
         echo "<a class='folder' href='./".$filename."/".$filename.".php'><div class='folder'></div>".ucwords($filename)."<a/>"; // make a link to another page (camelcase)
+      $num++;  
+    } // end folders while
         
-    } // end else
+$num = 0; // displaying files in alphabetical order   
+while (($num) <= (count($dirFiles)-1)){
+    $filename = $dirFiles[$num];
+    $path = str_replace('C:\wamp64\www', 'http://clarke-server', $dir . '/' . $filename); //
+       
+        // echo "Dir: " . $dir . "<br>"; // Show $dir 
+        // echo "Path: " . $path . "<br>"; // show $path
+        echo "<a class='file' href='".$path."' rel='noopener noreferrer' target='_blank''><div class='file'></div>". ucwords($filename)."<a/>"; // Make a link to the file
+        
     $num++;
-}  // end while  
+        
+    } // files while end
+
     echo "</div>"; // end of div.files-folders
     echo "</div>"; // end of div.files-container
     echo "<link rel='stylesheet' type='text/css' href=" . $baseSheet . ">"; // dynamic link to baseStylesheet.css

@@ -82,33 +82,15 @@ if(!function_exists('sort_dir_files')) { // will get function already exists err
     unset($dirFolders[1]); // remove the '..' system dir
     $dirFolders = array_values($dirFolders);  // reindex the array
     
-    print_r($dirFolders);
-    echo "<br>";
-    print_r($dirFiles);
-    
     echo "<br>";
     echo "<br><br>";
-    
-    
- // the following php will read the contents of the directory and display it
 
-    
     echo "<div class='file-container'>";
     echo "<div class='files-folders'>";
-        
-$num = 0;   
-while (($num) <= (count($allFiles)-1)){
-    $filename = $newDir[$num];
-    $path = str_replace('C:\wamp64\www', 'http://clarke-server', $dir . '/' . $filename); //
-
-    if (strpos($filename, ".")) { // If its a file do the following
-        
-        // echo "Dir: " . $dir . "<br>"; // Show $dir 
-        // echo "Path: " . $path . "<br>"; // show $path
-        echo "<a class='file' href='".$path."' rel='noopener noreferrer' target='_blank''><div class='file'></div>". ucwords($filename)."<a/>"; // Make a link to the file
     
-        
-    } else { // else (if its a folder) do the follwoing
+$num = 0;   // displaying folders in alphabetical order
+while (($num) <= (count($dirFolders)-1)){ // else (if its a folder) do the follwoing
+        $filename = $dirFolders[$num];
         if (!file_exists("./" . $filename)){ // create folder in www/html/ if it doens't exists
             mkdir("./" . $filename, 0700);
         }
@@ -119,10 +101,22 @@ while (($num) <= (count($allFiles)-1)){
         fwrite($fileHandle, $baseFile);
         
         echo "<a class='folder' href='./".$filename."/".$filename.".php'><div class='folder'></div>".ucwords($filename)."<a/>"; // make a link to another page (camelcase)
+      $num++;  
+    } // end folders while
         
-    } // end else
+$num = 0; // displaying files in alphabetical order   
+while (($num) <= (count($dirFiles)-1)){
+    $filename = $dirFiles[$num];
+    $path = str_replace('C:\wamp64\www', 'http://clarke-server', $dir . '/' . $filename); //
+       
+        // echo "Dir: " . $dir . "<br>"; // Show $dir 
+        // echo "Path: " . $path . "<br>"; // show $path
+        echo "<a class='file' href='".$path."' rel='noopener noreferrer' target='_blank''><div class='file'></div>". ucwords($filename)."<a/>"; // Make a link to the file
+        
     $num++;
-}  // end while  
+        
+    } // files while end
+
     echo "</div>"; // end of div.files-folders
     echo "</div>"; // end of div.files-container
     echo "<link rel='stylesheet' type='text/css' href=" . $baseSheet . ">"; // dynamic link to baseStylesheet.css
