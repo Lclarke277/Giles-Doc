@@ -44,21 +44,40 @@
     
     echo "</div>";
     echo "</div>"; // div.buttons
+    echo "<br>";
     
-    echo "<br><br>";
+if(!function_exists('readDir')) { // will get function already exists error without this
+    // read & sortDir 
+    function readDir($path) {
+
+    // Make sure we have a trailing slash and asterix
+    $path = rtrim($path, '/') . '/*';
+
+    $dirs = glob($path, GLOB_ONLYDIR);
+
+    $files = glob($path);
+
+    return array_unique(array_merge($dirs, $files));
+    }
+}
+    $allFiles = scandir($dir);
+    unset($allFiles[0]);
+    unset($allFiles[1]);
+    $allFiles = array_values($allFiles); 
+    //print_r($allFiles);
+    
+    echo readDir($dir) . "<br><br>";
     
     
  // the following php will read the contents of the directory and display it
 
-$allFiles = scandir($dir);
-$files = array_diff($allFiles, array('.', '..', '.git'));
     
     echo "<div class='file-container'>";
     echo "<div class='files-folders'>";
         
-$num = 2;   
-while (($num) <= (count($files)+1)){
-    $filename = $files[$num];
+$num = 0;   
+while (($num) <= (count($allFiles)-1)){
+    $filename = $allFiles[$num];
     $path = str_replace('C:\wamp64\www', 'http://clarke-server', $dir . '/' . $filename); //
 
     if (strpos($filename, ".")) { // If its a file do the following

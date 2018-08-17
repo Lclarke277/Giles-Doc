@@ -44,21 +44,43 @@
     
     echo "</div>";
     echo "</div>"; // div.buttons
+    echo "<br>";
+    
+    print_r(scandir($dir));
+    
+if(!function_exists('sort_dir_files')) { // will get function already exists error without this
+    function sort_dir_files($dir) {
+        $sortedData = array();
+        foreach(scandir($dir) as $file)
+        {
+                if(is_file($dir.'/'.$file))
+                        array_push($sortedData, $file);
+                else
+                        array_unshift($sortedData, $file);
+        }
+        return $sortedData;
+    }
+}
+    $allFiles = scandir($dir);
+    unset($allFiles[0]);
+    unset($allFiles[1]);
+    $allFiles = array_values($allFiles); 
+    $newDir = sort_dir_files($dir);
+    print_r($newDir);
+    //print_r($allFiles);
     
     echo "<br><br>";
     
     
  // the following php will read the contents of the directory and display it
 
-$allFiles = scandir($dir);
-$files = array_diff($allFiles, array('.', '..', '.git'));
     
     echo "<div class='file-container'>";
     echo "<div class='files-folders'>";
         
-$num = 2;   
-while (($num) <= (count($files)+1)){
-    $filename = $files[$num];
+$num = 0;   
+while (($num) <= (count($allFiles)-1)){
+    $filename = $newDir[$num];
     $path = str_replace('C:\wamp64\www', 'http://clarke-server', $dir . '/' . $filename); //
 
     if (strpos($filename, ".")) { // If its a file do the following

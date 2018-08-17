@@ -76,8 +76,8 @@ if(!function_exists('sort_dir_files')) { // will get function already exists err
     echo "<div class='file-container'>";
     echo "<div class='files-folders'>";
         
-$num = 0;   
-while (($num) <= (count($allFiles)-1)){
+$num = 2;   
+while (($num) <= (count($allFiles)+2)){
     $filename = $newDir[$num];
     $path = str_replace('C:\wamp64\www', 'http://clarke-server', $dir . '/' . $filename); //
 
