@@ -116,45 +116,7 @@
     echo "</table>
           </div>";
     ?>
-    
-    
-<!--
-    <div id=table>
-    <table>
-        <tr>
-            <th>Administration</th>
-            <th>Facilities</th>
-            <th>Service</th>
-        </tr>
-        <tr>
-            <td><a href="html/customer%20service/customer%20service.php">Customer Service</a></td>
-            <td><a href="">Manufacturing</a></td>
-            <td><a href="">Maintenance</a></td>
-        </tr>
-        <tr>
-            <td><a href="">IT Support</a></td>
-            <td><a href="">Repackaging</a></td>
-            <td><a href="">Engineering</a></td>
-        </tr>
-        <tr>
-            <td><a href="">Supply Chain</a></td>
-            <td><a href="">Greendale</a></td>
-            <td><a href="">Quality Assurance</a></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><a href="">CPG</a></td>
-            <td><a href="">Laboratory</a></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td><a href="">Safety</a></td>
-        </tr>
-    
-    </table>
-    </div>
- -->   
+
     <img id=isLogo src="media/isLogo.png">
     
     <video autoplay loop plays-inline muted>

@@ -29,8 +29,21 @@
         // dynamic back button
         $tmp = explode('\\', dirname(__DIR__));
         $backPage = '\\' . end($tmp) . '.php';
+    
+    echo "<h1>" . $backPage . "</h1>";
+    
+    // if backPage would send you to html/html.php, instead send to the home page
+    if ($backPage == 'clarke-server/html/html.php'){
+        
+        $backButton = 'http://clarke-server/index.php'; // path generation
+        echo "<a class='button' href='".$backButton."'>Back</a>"; // back button
+        
+    } else {
+        
         $backButton = str_replace('C:\wamp64\www', 'http://clarke-server', dirname(__DIR__)) . $backPage; // path generation
         echo "<a class='button' href='".$backButton."'>Back</a>"; // back button
+    } // else
+    
     echo "</div>";
     echo "</div>"; // div.buttons
     
