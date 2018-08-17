@@ -31,7 +31,7 @@
         $backPage = '\\' . end($tmp) . '.php';
     
     // if backPage would send you to html/html.php, instead send to the home page
-    if ($backPage = '\\clarke-server\html\html.php'){
+    if ($backPage == '\html.php'){
         
         $backButton = 'http://clarke-server/index.php'; // path generation
         echo "<a class='button' href='".$backButton."'>Back</a>"; // back button

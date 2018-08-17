@@ -43,8 +43,8 @@ h1, p, a {
 }
 
 div.file-container {
-    border-top: 1px solid rgba(170, 0, 0, 0.8);
-    border-bottom: 1px solid rgba(170, 0, 0, 0.8);
+    border-top: 1px solid rgba(34, 100, 176, 0.8);
+    border-bottom: 1px solid rgba(34, 100, 176, 0.8);
     position: fixed;
     overflow-y:auto;
     background-color: rgba(0, 0, 0, 0.5);
