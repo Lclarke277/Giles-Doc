@@ -47,24 +47,47 @@
     echo "<br>";
     
 if(!function_exists('sort_dir_files')) { // will get function already exists error without this
-    function sort_dir_files($dir) {
+    function sortDirFiles($dir) {
         $sortedData = array();
+        $files = array();
+        $folders = array();
         foreach(scandir($dir) as $file)
         {
                 if(is_file($dir.'/'.$file))
-                        array_push($sortedData, $file);
+                        array_push($files, $file);
                 else
-                        array_unshift($sortedData, $file);
+                        array_unshift($folders, $file);
         }
-        return $sortedData;
+        return $files;
     }
 }
+    
+if(!function_exists('sort_dir_files')) { // will get function already exists error without this
+    function sortDirFolders($dir) {
+        $sortedData = array();
+        $files = array();
+        $folders = array();
+        foreach(scandir($dir) as $file)
+        {
+                if(is_file($dir.'/'.$file))
+                        array_push($files, $file);
+                else
+                        array_push($folders, $file);
+        }
+        return $folders;
+    }
+}    
+    
     $allFiles = scandir($dir);
     unset($allFiles[0]);
     unset($allFiles[1]);
     $allFiles = array_values($allFiles); 
-    $newDir = sort_dir_files($dir);
-    print_r($newDir);
+    $newDir = sortDirFiles($dir);
+    print_r(sortDirFiles($dir));
+    
+    echo "<br>";
+    
+    print_r(sortDirFolders($dir));
     //print_r($allFiles);
     
     echo "<br><br>";
@@ -76,8 +99,8 @@ if(!function_exists('sort_dir_files')) { // will get function already exists err
     echo "<div class='file-container'>";
     echo "<div class='files-folders'>";
         
-$num = 2;   
-while (($num) <= (count($allFiles)+2)){
+$num = 0;   
+while (($num) <= (count($allFiles)-1)){
     $filename = $newDir[$num];
     $path = str_replace('C:\wamp64\www', 'http://clarke-server', $dir . '/' . $filename); //
 

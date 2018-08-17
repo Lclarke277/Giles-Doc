@@ -47,26 +47,46 @@
     echo "<br>";
     
 if(!function_exists('sort_dir_files')) { // will get function already exists error without this
-    function sort_dir_files($dir) {
+    function sortDirFiles($dir) { // $file is array of all files in the dir
         $sortedData = array();
-        foreach(scandir($dir) as $file)
-        {
+        $files = array();
+        $folders = array();
+        foreach(scandir($dir) as $file) {
                 if(is_file($dir.'/'.$file))
-                        array_push($sortedData, $file);
+                        array_push($files, $file);
                 else
-                        array_unshift($sortedData, $file);
+                        array_unshift($folders, $file);
         }
-        return $sortedData;
+        return $files;
     }
 }
-    $allFiles = scandir($dir);
-    unset($allFiles[0]);
-    unset($allFiles[1]);
-    $allFiles = array_values($allFiles); 
-    $newDir = sort_dir_files($dir);
-    print_r($newDir);
-    //print_r($allFiles);
     
+if(!function_exists('sort_dir_files')) { // will get function already exists error without this
+    function sortDirFolders($dir) { // $folders is an array of all folders in the dir
+        $sortedData = array();
+        $files = array();
+        $folders = array();
+        foreach(scandir($dir) as $file) {
+                if(is_file($dir.'/'.$file))
+                        array_push($files, $file);
+                else
+                        array_push($folders, $file);
+        }
+        return $folders;
+    }
+}    
+    $dirFiles = sortDirFiles($dir); // array of files in the dir
+    
+    $dirFolders = sortDirFolders($dir); // array of folders in the dir 
+    unset($dirFolders[0]); // remove the '.' system dir
+    unset($dirFolders[1]); // remove the '..' system dir
+    $dirFolders = array_values($dirFolders);  // reindex the array
+    
+    print_r($dirFolders);
+    echo "<br>";
+    print_r($dirFiles);
+    
+    echo "<br>";
     echo "<br><br>";
     
     

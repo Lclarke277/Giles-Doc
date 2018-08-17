@@ -46,8 +46,6 @@
     echo "</div>"; // div.buttons
     echo "<br>";
     
-    print_r(scandir($dir));
-    
 if(!function_exists('sort_dir_files')) { // will get function already exists error without this
     function sort_dir_files($dir) {
         $sortedData = array();
