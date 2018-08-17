@@ -32,7 +32,7 @@
     // the following creates a table header for each folder in the docs directory
     $num = 0;   
     while (($num) <= (count($headers))-1){
-        echo "<th><a href='.\html\\" . $headers[$num] . "\\" . $headers[$num] . ".php'>" . $headers[$num] . "</a></th>";
+        echo "<th>" . $headers[$num] . "</th>";
         
         if (!file_exists(".\html\\" . $headers[$num])){ // create folder in www/html/ for the <th> if it doens't exists
             mkdir(".\html\\" . $headers[$num], 0700);
