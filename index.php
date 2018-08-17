@@ -22,7 +22,8 @@
     $headers = scandir($docPath); // get array of files in the docs dir
     unset($headers[0]); // remove first value of scandir '.'
     unset($headers[1]); // rmeove second value of scandir '..'
-    $headers = array_values($headers); // reinitialize the array
+    // scandir picks up 2 'directories' a '.' and a '..'. These are dropped
+    $headers = array_values($headers); // reinitialize the array; unset makes the values null. array_vaules removes null objects from the array
     
     echo "<div id=table>
           <table>
@@ -32,6 +33,11 @@
     $num = 0;   
     while (($num) <= (count($headers))-1){
         echo "<th>" . $headers[$num] . "</th>";
+        
+        if (!file_exists(".\html\\" . $headers[$num])){ // create folder in www/html/ for the <th> if it doens't exists
+            mkdir(".\html\\" . $headers[$num], 0700);
+        }
+        
         $num++;
     }
     
@@ -73,7 +79,25 @@
             }
         $htmlLink = $htmlPath . '\\' . $headers[$num] . '\\' . $subdir[$num2] . '\\' . $subdir[$num2] . '.php';
         echo "<td><a href='" . $htmlLink . "'>" . $subdir[$num2] . "</a></td>";
+        
+        if (!file_exists(".\html\\" . $headers[$num] . "\\" . $subdir[$num2])){ // create folder in www/html/ for the <th> if it doens't exists
+            mkdir(".\html\\" . $headers[$num] . "\\" . $subdir[$num2], 0700);
+        
+        // the following creates a file based on baseIndex.php
+        $fileCreate = $htmlLink; 
+        $fileHandle = fopen($fileCreate, 'w') or die("can't open file");
+        $baseFile = file_get_contents('.\\baseIndex.php'); 
+        fwrite($fileHandle, $baseFile);
         $num++;
+            
+        } else {
+        // the following creates a file based on baseIndex.php
+        $fileCreate = $htmlLink; 
+        $fileHandle = fopen($fileCreate, 'w') or die("can't open file");
+        $baseFile = file_get_contents('.\\baseIndex.php'); 
+        fwrite($fileHandle, $baseFile);    
+        $num++;
+        };
     };
     echo "</tr>";
     $num2++;
