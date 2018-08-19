@@ -37,9 +37,23 @@ img.isLogo {
     margin-left: -100px;
 }
 
-h1, p, a {
+h1, p, a, th, td {
     font-family: 'Roboto', sans-serif;
     text-decoration: none;
+}
+
+th {
+    color: white;
+    text-shadow: 2px 4px 15px rgba(0, 0, 0, 0.3);
+    font-size: 20px;
+    padding-top: 5px;
+    border: 1px solid rgba(34, 100, 176, 0.8); 
+    border-width: medium;
+    background-color: rgba(34, 100, 176, 0.8);
+}
+
+tr {
+    color: white;
 }
 
 div.file-container {
@@ -112,7 +126,7 @@ a.button:hover {
 a.folder, a.file {
     border-radius: 3px;
     color: white;
-    font-size: 27px;
+    font-size: 20px;
     display: block;
     -o-transition:.3s;
     -ms-transition:.3s;
@@ -128,7 +142,7 @@ a.folder:hover, a.file:hover {
 div.file {
     background-image: url(media/document-small.png);
     background-repeat: no-repeat;
-    width: 38px;
+    width: 35px;
     height: 30px;
     display:inline-block;
 }
@@ -139,4 +153,18 @@ div.folder {
     width: 38px;
     height: 30px;
     display:inline-block;
+}
+
+td.revNum, td.effDate {
+    text-align: center;
+    font-size: 20px;
+}
+
+td.decription {
+    width: 100px;
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;
 }

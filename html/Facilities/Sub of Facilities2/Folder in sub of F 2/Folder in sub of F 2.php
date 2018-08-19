@@ -82,15 +82,8 @@ if(!function_exists('sort_dir_files')) { // will get function already exists err
     unset($dirFolders[1]); // remove the '..' system dir
     $dirFolders = array_values($dirFolders);  // reindex the array
     
-    print_r($dirFolders);
-    echo "<br>";
-    print_r($dirFiles);
-    
     echo "<br>";
     echo "<br><br>";
-    
-    
- // the following php will read the contents of the directory and display it
 
     echo "<div class='file-container'>";
     echo "<div class='files-folders'>";
@@ -110,20 +103,41 @@ while (($num) <= (count($dirFolders)-1)){ // else (if its a folder) do the follw
         echo "<a class='folder' href='./".$filename."/".$filename.".php'><div class='folder'></div>".ucwords($filename)."<a/>"; // make a link to another page (camelcase)
       $num++;  
     } // end folders while
-        
+    
+    // folder display
+    
+    $flag = false;
+    if (count($dirFiles) == 0) { // if there are no files, don't display the table
+            $flag = true;
+    };
+    
+    if (!$flag) {
+    echo "<table>
+      <tr>
+        <th>Doc Number<th>
+        <th>Revision Number<th>
+        <th>Description<th>
+        <th>Effective Date<th>
+          <tr>";
+    
 $num = 0; // displaying files in alphabetical order   
 while (($num) <= (count($dirFiles)-1)){
     $filename = $dirFiles[$num];
-    $path = str_replace('C:\wamp64\www', 'http://clarke-server', $dir . '/' . $filename); //
-       
-        // echo "Dir: " . $dir . "<br>"; // Show $dir 
-        // echo "Path: " . $path . "<br>"; // show $path
-        echo "<a class='file' href='".$path."' rel='noopener noreferrer' target='_blank''><div class='file'></div>". ucwords($filename)."<a/>"; // Make a link to the file
-        
+    $fileData = explode('^', $filename); // get the data based on the % delimiter in the filename
+    $path = str_replace('C:\wamp64\www', 'http://clarke-server', $dir . '/' . $filename); // generate the path to the file
+    
+    echo "<tr>";
+    echo    "<td><a class='file' href='".$path."' rel='noopener noreferrer' target='_blank''><div class='file'></div>" . $fileData[0] . "</a><td>";
+    echo    "<td>" . $fileData[1] . "<td>";
+    echo    "<td>" . $fileData[2] . "<td>";
+    echo    "<td>" . $fileData[3] . "<td>
+           <tr>";
+    
     $num++;
         
     } // files while end
-
+} // end of if flag
+    
     echo "</div>"; // end of div.files-folders
     echo "</div>"; // end of div.files-container
     echo "<link rel='stylesheet' type='text/css' href=" . $baseSheet . ">"; // dynamic link to baseStylesheet.css
