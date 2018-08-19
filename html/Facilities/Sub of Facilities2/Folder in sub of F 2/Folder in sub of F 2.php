@@ -7,13 +7,22 @@
 <body>
 
     <?php 
+    
     echo "<h1>" . ucwords(strtolower(basename($_SERVER['PHP_SELF'], ".php"))) . "</h1>"; // title of page
     // title is dynamic from the folder name. Camel-case is applied
     
     $dir = str_replace('html', 'docs', getcwd()); 
+    $templateDir = substr(getcwd(), 0, 14) . "templates";
+    $currentWorkingDir = substr(getcwd(), 19, 90);
+    
+    if (!file_exists($templateDir . "\\" . $currentWorkingDir)){ // create folder in www/html/ if it doens't exists
+            mkdir($templateDir . "\\" . $currentWorkingDir, 0700);
+        }
+    
     $parDir = (substr_count($dir, '\\')) - 2; // variable to find out how to get back to baseIndex.php 
     $basePath = str_repeat('../', $parDir) . 'baseIndex.php'; 
     $baseSheet = str_repeat('../', $parDir) . 'baseStylesheet.css';
+    echo "<link rel='stylesheet' type='text/css' href=" . $baseSheet . ">"; // dynamic link to baseStylesheet.css
     $logoPath = str_repeat('../', $parDir) . '/media/';
     
     echo "<img class='giles-logo' src=".$logoPath."giles-white.png>"; // giles corner logo
@@ -81,12 +90,11 @@ if(!function_exists('sort_dir_files')) { // will get function already exists err
     unset($dirFolders[0]); // remove the '.' system dir
     unset($dirFolders[1]); // remove the '..' system dir
     $dirFolders = array_values($dirFolders);  // reindex the array
-    
-    echo "<br>";
-    echo "<br><br>";
 
     echo "<div class='file-container'>";
     echo "<div class='files-folders'>";
+    
+    echo "<div class='folders'>";
     
 $num = 0;   // displaying folders in alphabetical order
 while (($num) <= (count($dirFolders)-1)){ // else (if its a folder) do the follwoing
@@ -104,43 +112,56 @@ while (($num) <= (count($dirFolders)-1)){ // else (if its a folder) do the follw
       $num++;  
     } // end folders while
     
-    // folder display
+    echo "</div>"; // end div.folders div
     
+    echo "<div class='files'>";
+        
     $flag = false;
     if (count($dirFiles) == 0) { // if there are no files, don't display the table
+            echo "<h1>There are no files in this directory</h1>";
             $flag = true;
     };
     
     if (!$flag) {
     echo "<table>
-      <tr>
-        <th>Doc Number<th>
-        <th>Revision Number<th>
-        <th>Description<th>
-        <th>Effective Date<th>
-          <tr>";
+      <tr class='fixedHeader'>
+        <th>Document Number</th>
+        <th>Revision</th>
+        <th>Description</th>
+        <th>Effective Date</th>
+      </tr>";
     
-$num = 0; // displaying files in alphabetical order   
+$num = 0; // displaying files in alphabetical order 
+        
 while (($num) <= (count($dirFiles)-1)){
     $filename = $dirFiles[$num];
     $fileData = explode('^', $filename); // get the data based on the % delimiter in the filename
     $path = str_replace('C:\wamp64\www', 'http://clarke-server', $dir . '/' . $filename); // generate the path to the file
     
-    echo "<tr>";
-    echo    "<td><a class='file' href='".$path."' rel='noopener noreferrer' target='_blank''><div class='file'></div>" . $fileData[0] . "</a><td>";
-    echo    "<td>" . $fileData[1] . "<td>";
-    echo    "<td>" . $fileData[2] . "<td>";
-    echo    "<td>" . $fileData[3] . "<td>
-           <tr>";
+    if (isset($fileData[1]) == false) {
+        echo "<h1>Some files here seem to be mis-formatted. Please follow the guide</h1>";
+        break;
+    } else {
+    
+    $fileDate = $fileData[3];
+    $fileDate = substr($fileDate, 0, 10); // return the date without the file exention on the end. Date MUST be XX-XX-XXXX format
+    
+    echo "<tr class='files'>";
+    echo    "<td class='docNum'><a class='file' href='".$path."' rel='noopener noreferrer' target='_blank''><div class='file'></div>" . $fileData[0] . "</a></td>";
+    echo    "<td class='revNum'>" . $fileData[1] . "</td>";
+    echo    "<td class='description'>" . $fileData[2] . "</td>";
+    echo    "<td class='effDate'>" . $fileDate . "</td>
+           </tr>";
     
     $num++;
         
     } // files while end
 } // end of if flag
-    
+} // else
+    echo "</div>"; // end div.files
     echo "</div>"; // end of div.files-folders
     echo "</div>"; // end of div.files-container
-    echo "<link rel='stylesheet' type='text/css' href=" . $baseSheet . ">"; // dynamic link to baseStylesheet.css
+    
 ?>
   
     
