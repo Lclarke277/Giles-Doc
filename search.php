@@ -1,3 +1,12 @@
+<html>
+    
+<head>
+<link rel='stylesheet' type='text/css' href="./searchStylesheet.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+</head>
+    
+<body>
+
 <?php
 
     $hn = 'localhost';
@@ -16,39 +25,13 @@ $search_stmt->store_result();
 
 // bind results to these variables
 $search_stmt->bind_result($search_document_name, $search_revision, $search_description, $search_effective_date, $search_path);   
-
     
-while($search_stmt->fetch()) {
-    //execute 
-}
-    
-
-} else {
-    echo "<p>Please enter a document name in the search bar</p>";
-}
-?>
-
-<html>
-    
-<head>
-<link rel='stylesheet' type='text/css' href="./searchStylesheet.css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-</head>
-    
-<body>
-
-    <?php 
-    
-    echo "<h1>Search Results</h1>"; // title of page
+echo "<h1>Search Results</h1>"; // title of page
     // title is dynamic from the folder name. Camel-case is applied
     
     $dir = str_replace('html', 'docs', getcwd()); 
     $templateDir = substr(getcwd(), 0, 14) . "templates";
     $currentWorkingDir = substr(getcwd(), 19, 90);
-    
-    if (!file_exists($templateDir . "\\" . $currentWorkingDir)){ // create folder in www/html/ if it doens't exists
-            mkdir($templateDir . "\\" . $currentWorkingDir, 0700);
-        }
     
     $parDir = (substr_count($dir, '\\')) - 2; // variable to find out how to get back to baseIndex.php 
     $basePath = str_repeat('../', $parDir) . 'baseIndex.php'; 
@@ -72,67 +55,26 @@ while($search_stmt->fetch()) {
           </form>";
     
     
-    echo "</div>";
-    echo "</div>"; // div.buttons
-    echo "<br>";
+    echo "</div>
+          </div>
+          <br>
+          <div class='file-container'>
+          <div class='files-folders'>
     
-if(!function_exists('sort_dir_files')) { // will get function already exists error without this
-    function sortDirFiles($dir) { // $file is array of all files in the dir
-        $sortedData = array();
-        $files = array();
-        $folders = array();
-        foreach(scandir($dir) as $file) {
-                if(is_file($dir.'/'.$file))
-                        array_push($files, $file);
-                else
-                        array_unshift($folders, $file);
-        }
-        return $files;
-    }
-}
+        <div class='files'>
     
-if(!function_exists('sort_dir_files')) { // will get function already exists error without this
-    function sortDirFolders($dir) { // $folders is an array of all folders in the dir
-        $sortedData = array();
-        $files = array();
-        $folders = array();
-        foreach(scandir($dir) as $file) {
-                if(is_file($dir.'/'.$file))
-                        array_push($files, $file);
-                else
-                        array_push($folders, $file);
-        }
-        return $folders;
-    }
-}    
-    $dirFiles = sortDirFiles($dir); // array of files in the dir
-    
-    $dirFolders = sortDirFolders($dir); // array of folders in the dir 
-    unset($dirFolders[0]); // remove the '.' system dir
-    unset($dirFolders[1]); // remove the '..' system dir
-    $dirFolders = array_values($dirFolders);  // reindex the array
-
-    echo "<div class='file-container'>";
-    echo "<div class='files-folders'>";
-    
-    echo "<div class='files'>";
-        
-    $flag = false;
-    if (count($dirFiles) == 0) { // if there are no files, don't display the table
-            echo "<h1>There are no document numbers containing that info</h1>";
-            $flag = true;
-    };
-    
-    if (!$flag) {
-    echo "<table>
+        <table>
       <tr class='fixedHeader'>
         <th>Document #</th>
         <th>Revision</th>
         <th>Description</th>
         <th>Effective</th>
-      </tr>";
+      </tr>";  
     
-$num = 0; // displaying files in alphabetical order   
+while($search_stmt->fetch()) {
+    
+    
+    
     
     echo "<tr class='files'>";
     echo    "<td class='docNum'><a class='file' href='".$search_path."' rel='noopener noreferrer' target='_blank''><div class='file'></div>" . $search_document_name . "</a></td>";
@@ -140,19 +82,21 @@ $num = 0; // displaying files in alphabetical order
     echo    "<td class='description'>" . $search_description . "</td>";
     echo    "<td class='effDate'>" . $search_effective_date . "</td>
            </tr>";
-        
-    $num++;
-        
+  
 } // end of if flag
     
     echo "</div>"; // end div.files
     echo "</div>"; // end of div.files-folders
-    echo "</div>"; // end of div.files-container
-    
-?>
-  
-    
-    
+    echo "</div> // end of div.files-container
+   
 </body>
 
-</html>
+</html>";
+
+    
+
+} else {
+    echo "<p>Please enter a document name in the search bar</p>";
+}
+?>
+

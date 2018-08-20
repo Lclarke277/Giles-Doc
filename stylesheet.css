@@ -121,7 +121,7 @@ input.searchBar {
 }
 
 input.searchButton {
-    border: 1px solid white;
+    border: 1px solid black;
     font-size: 24px;
     color: white;
    /* border: solid 1px white; */
