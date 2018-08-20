@@ -7,6 +7,12 @@
 <body>
 
     <?php 
+    // connect to database. Will have to move to external file?
+    $hn = 'localhost';
+    $db = 'giles_docs';
+    $un = 'giles';
+    $pw = '!$iGnIN!';
+    $conn = mysqli_connect($hn, $un, $pw, $db);
     
     echo "<h1>" . ucwords(strtolower(basename($_SERVER['PHP_SELF'], ".php"))) . "</h1>"; // title of page
     // title is dynamic from the folder name. Camel-case is applied
@@ -125,10 +131,10 @@ while (($num) <= (count($dirFolders)-1)){ // else (if its a folder) do the follw
     if (!$flag) {
     echo "<table>
       <tr class='fixedHeader'>
-        <th>Document Number</th>
+        <th>Document #</th>
         <th>Revision</th>
         <th>Description</th>
-        <th>Effective Date</th>
+        <th>Effective</th>
       </tr>";
     
 $num = 0; // displaying files in alphabetical order 
@@ -153,6 +159,9 @@ while (($num) <= (count($dirFiles)-1)){
     echo    "<td class='effDate'>" . $fileDate . "</td>
            </tr>";
     
+    // build SQL statement to add data into the database
+    $sql = "INSERT INTO docs (document_number, revision, description, effective_date) VALUES ('". $fileData[0] ."', '". $fileData[1] ."', '". $fileData[2] ."', '". $fileDate ."');";
+    $conn->query($sql);
     $num++;
         
     } // files while end

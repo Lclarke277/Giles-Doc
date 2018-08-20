@@ -147,7 +147,7 @@ div.folders {
     border-right: 1px solid rgba(34, 100, 176, 0.8);
     padding: 10px 1%;
     float: left;
-    width: 24%;
+    width: 25%;
 }
 
 div.files {
@@ -156,7 +156,18 @@ div.files {
     padding: 0;
     margin: 0;
     float: right;
-    width: 73%;
+    width: 70%;
+    padding-right: 1%;
+}
+
+div.folder { 
+    padding-left: 5px;
+    margin-top: 2px;
+    background-image: url(media/folder-small.png);
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 20px;
+    display:inline-block;
 }
 
 div.file {
@@ -184,19 +195,17 @@ tr.files:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-div.folder { 
-    padding-left: 5px;
-    margin-top: 2px;
-    background-image: url(media/folder-small.png);
-    background-repeat: no-repeat;
-    width: 24px;
-    height: 20px;
-    display:inline-block;
+td {
+   padding: 2px;
 }
 
 td.revNum, td.effDate {
     text-align: center;
     font-size: 20px;
+}
+
+td.docNum, td.effDate {
+    white-space: nowrap;
 }
 
 td.decription {
