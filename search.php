@@ -87,7 +87,7 @@ while($search_stmt->fetch()) {
     
     echo "</div>"; // end div.files
     echo "</div>"; // end of div.files-folders
-    echo "</div> // end of div.files-container
+    echo "</div>
    
 </body>
 

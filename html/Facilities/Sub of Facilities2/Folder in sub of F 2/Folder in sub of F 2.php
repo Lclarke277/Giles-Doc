@@ -7,6 +7,12 @@
 <body>
 
     <?php 
+    // connect to database. Will have to move to external file?
+    $hn = 'localhost';
+    $db = 'giles_docs';
+    $un = 'giles';
+    $pw = '!$iGnIN!';
+    $conn = mysqli_connect($hn, $un, $pw, $db);
     
     echo "<h1>" . ucwords(strtolower(basename($_SERVER['PHP_SELF'], ".php"))) . "</h1>"; // title of page
     // title is dynamic from the folder name. Camel-case is applied
@@ -22,6 +28,7 @@
     $parDir = (substr_count($dir, '\\')) - 2; // variable to find out how to get back to baseIndex.php 
     $basePath = str_repeat('../', $parDir) . 'baseIndex.php'; 
     $baseSheet = str_repeat('../', $parDir) . 'baseStylesheet.css';
+    $baseSearch = str_repeat('../', $parDir) . 'search.php';
     echo "<link rel='stylesheet' type='text/css' href=" . $baseSheet . ">"; // dynamic link to baseStylesheet.css
     $logoPath = str_repeat('../', $parDir) . '/media/';
     
@@ -50,6 +57,13 @@
         $backButton = str_replace('C:\wamp64\www', 'http://clarke-server', dirname(__DIR__)) . $backPage; // path generation
         echo "<a class='button' href='".$backButton."'>Back</a>"; // back button
     } // else
+    
+    // search form
+    echo "<form  method='post' action='" . $baseSearch . "'  id='searchform'> 
+               <input  class='searchBar' type='text' name='name' placeholder='Doc Number'> 
+               <input  class='searchButton' type='submit' name='submit' value='Search'> 
+          </form>";
+    
     
     echo "</div>";
     echo "</div>"; // div.buttons
@@ -125,10 +139,10 @@ while (($num) <= (count($dirFolders)-1)){ // else (if its a folder) do the follw
     if (!$flag) {
     echo "<table>
       <tr class='fixedHeader'>
-        <th>Document Number</th>
+        <th>Document #</th>
         <th>Revision</th>
         <th>Description</th>
-        <th>Effective Date</th>
+        <th>Effective</th>
       </tr>";
     
 $num = 0; // displaying files in alphabetical order 
@@ -137,6 +151,7 @@ while (($num) <= (count($dirFiles)-1)){
     $filename = $dirFiles[$num];
     $fileData = explode('^', $filename); // get the data based on the % delimiter in the filename
     $path = str_replace('C:\wamp64\www', 'http://clarke-server', $dir . '/' . $filename); // generate the path to the file
+    $path = str_replace('/', '\\', $path);
     
     if (isset($fileData[1]) == false) {
         echo "<h1>Some files here seem to be mis-formatted. Please follow the guide</h1>";
@@ -153,6 +168,10 @@ while (($num) <= (count($dirFiles)-1)){
     echo    "<td class='effDate'>" . $fileDate . "</td>
            </tr>";
     
+    // build SQL statement to add data into the database
+    $sql = "INSERT INTO docs (document_number, revision, description, effective_date, path) VALUES ('". $fileData[0] ."', '". $fileData[1] ."', '". $fileData[2] ."', '". $fileDate ."', '" . quotemeta($path) . "')";
+    $conn->query($sql);
+        
     $num++;
         
     } // files while end
