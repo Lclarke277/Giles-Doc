@@ -19,23 +19,19 @@ $search_stmt->bind_result($search_document_name, $search_revision, $search_descr
 
     
 while($search_stmt->fetch()) {
-    //execute
-    
-    
+    //execute 
 }
     
 
 } else {
     echo "<p>Please enter a document name in the search bar</p>";
 }
-
-
 ?>
-
 
 <html>
     
 <head>
+<link rel='stylesheet' type='text/css' href="./searchStylesheet.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
     
@@ -56,9 +52,7 @@ while($search_stmt->fetch()) {
     
     $parDir = (substr_count($dir, '\\')) - 2; // variable to find out how to get back to baseIndex.php 
     $basePath = str_repeat('../', $parDir) . 'baseIndex.php'; 
-    $baseSheet = str_repeat('../', $parDir) . 'baseStylesheet.css';
     $baseSearch = str_repeat('../', $parDir) . 'search.php';
-    echo "<link rel='stylesheet' type='text/css' href=" . $baseSheet . ">"; // dynamic link to baseStylesheet.css
     $logoPath = str_repeat('../', $parDir) . '/media/';
     
     echo "<img class='giles-logo' src=".$logoPath."giles-white.png>"; // giles corner logo
@@ -73,7 +67,7 @@ while($search_stmt->fetch()) {
     
     // search form
     echo "<form  method='post' action='" . $baseSearch . "'  id='searchform'> 
-               <input  class='searchBar' type='text' name='name'> 
+               <input  class='searchBar' type='text' name='name' placeholder='Doc Number'> 
                <input  class='searchButton' type='submit' name='submit' value='Search'> 
           </form>";
     

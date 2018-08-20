@@ -68,7 +68,7 @@ div.file-container {
 }
 
 div.files-folders {
-    width: 70%;
+    width: 100%;
     margin: 0 auto;
     display: block;
 }
@@ -92,7 +92,7 @@ div.buttons {
 }
 
 div.button-container {
-    width: 547px;
+    width: 447px;
     height: 50px;
     display: block;
     margin: 0 auto;
@@ -177,9 +177,8 @@ div.files {
     height: 100%;
     overflow-y:auto;
     padding: 0;
-    margin: 0;
-    float: right;
-    width: 70%;
+    margin: 0 auto;
+    width: 50%;
     padding-right: 1%;
 }
 
