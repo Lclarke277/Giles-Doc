@@ -60,7 +60,7 @@
     
     // search form
     echo "<form  method='post' action='" . $baseSearch . "'  id='searchform'> 
-               <input  class='searchBar' type='text' name='name'> 
+               <input  class='searchBar' type='text' name='name' placeholder='Doc Number'> 
                <input  class='searchButton' type='submit' name='submit' value='Search'> 
           </form>";
     

@@ -22,7 +22,6 @@ while($search_stmt->fetch()) {
     //execute
     
     
-    
 }
     
 
@@ -71,22 +70,6 @@ while($search_stmt->fetch()) {
     echo "<div class='buttons'>";
     echo "<div class='button-container'>";
         echo "<a class='button' href='http://clarke-server/index.php'>Home</a>"; // home button
-
-        // dynamic back button
-        $tmp = explode('\\', dirname(__DIR__));
-        $backPage = '\\' . end($tmp) . '.php';
-    
-    // if backPage would send you to html/html.php, instead send to the home page
-    if ($backPage == '\html.php'){
-        
-        $backButton = 'http://clarke-server/index.php'; // path generation
-        echo "<a class='button' href='".$backButton."'>Back</a>"; // back button
-        
-    } else {
-        
-        $backButton = str_replace('C:\wamp64\www', 'http://clarke-server', dirname(__DIR__)) . $backPage; // path generation
-        echo "<a class='button' href='".$backButton."'>Back</a>"; // back button
-    } // else
     
     // search form
     echo "<form  method='post' action='" . $baseSearch . "'  id='searchform'> 
