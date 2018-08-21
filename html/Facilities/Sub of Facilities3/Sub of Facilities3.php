@@ -187,7 +187,6 @@ while (($num) <= (count($dirFiles)-1)){
     } // files while end
 } // end of if flag
         // execute the sql delete command
-        echo $sqlDelete;
         $conn->query($sqlDelete);
 } // end of if flag
     echo "</div>"; // end div.files
