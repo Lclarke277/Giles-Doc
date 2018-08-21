@@ -166,10 +166,10 @@ while (($num) <= (count($dirFolders)-1)){ // else (if its a folder) do the follw
             <p class=manufacturing>$dataArray[19]</p>
 
             <h3>$dataArray[21]</h3>";  
-        
-        $flag = false;
+    
+    // manufacturing will always have 1 file, the editor txt file. So we have to run this inside the loop to change the value it checks for just for manufacturing file        
+    $flag = false;
     if (count($dirFiles) <= 1) { // if there are no files, don't display the table
-            echo "<h2>There are no files in this directory</h2>";
             $flag = true;
     };
     
@@ -209,8 +209,8 @@ $sqlDelete = "DELETE FROM docs WHERE path LIKE '" .  $sqlDir . "%' ";
 $num = 0; // displaying files in alphabetical order 
 $fileNamesHere = array();        
 while (($num) <= (count($dirFiles)-1)){
-    $filename = $dirFiles[$num];
-    
+    // removed ' from files. It will break sql if it contains a '
+    $filename = str_replace("'", '', $dirFiles[$num]);
     
     array_push($fileNamesHere, $filename);
     $fileData = explode('^', $filename); // get the data based on the % delimiter in the filename

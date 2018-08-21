@@ -209,8 +209,8 @@ $sqlDelete = "DELETE FROM docs WHERE path LIKE '" .  $sqlDir . "%' ";
 $num = 0; // displaying files in alphabetical order 
 $fileNamesHere = array();        
 while (($num) <= (count($dirFiles)-1)){
-    $filename = $dirFiles[$num];
-    
+    // removed ' from files. It will break sql if it contains a '
+    $filename = str_replace("'", '', $dirFiles[$num]);
     
     array_push($fileNamesHere, $filename);
     $fileData = explode('^', $filename); // get the data based on the % delimiter in the filename
