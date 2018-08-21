@@ -144,11 +144,17 @@ while (($num) <= (count($dirFolders)-1)){ // else (if its a folder) do the follw
         <th>Description</th>
         <th>Effective</th>
       </tr>";
-    
-$num = 0; // displaying files in alphabetical order 
+
+// building advanced SQL statement to delete any entries that exists in the database but files dont exists in the current dir
+$sqlDir = str_replace('C:\wamp64\www\\', 'http://clarke-server/' , $dir);
+$sqlDir = str_replace('\\', '/', $sqlDir);
+$sqlDelete = "DELETE * FROM docs WHERE path LIKE '" .  $sqlDir . "%' ";
         
+$num = 0; // displaying files in alphabetical order 
+$fileNamesHere = array();        
 while (($num) <= (count($dirFiles)-1)){
     $filename = $dirFiles[$num];
+    array_push($fileNamesHere, $filename);
     $fileData = explode('^', $filename); // get the data based on the % delimiter in the filename
     $path = str_replace('C:\wamp64\www', 'http://clarke-server', $dir . '/' . $filename); // generate the path to the file
     $path = str_replace('\\', '/', $path);
@@ -169,11 +175,7 @@ while (($num) <= (count($dirFiles)-1)){
            </tr>";
         
         
-    $sqlCheck = "SELECT path FROM docs WHERE path =" . quotemeta($path) . "";
-    $result = $conn->query($sqlCheck);
-        if($result) {
-            echo "<h1>IT EXISTS DOG</h1>";
-        }
+    $sqlDelete .= "AND path NOT LIKE '%" . $filename . "' ";
         
     
     // build SQL statement to add data into the database
@@ -184,7 +186,13 @@ while (($num) <= (count($dirFiles)-1)){
         
     } // files while end
 } // end of if flag
-} // else
+        echo $sqlDelete;
+        $query = $conn->query($sqlDelete);
+        if($query){
+         echo "<h1>DOG IT RAN!!</h1>";
+        }
+        #print_r($fileNamesHere);
+} // end of if flag
     echo "</div>"; // end div.files
     echo "</div>"; // end of div.files-folders
     echo "</div>"; // end of div.files-container
