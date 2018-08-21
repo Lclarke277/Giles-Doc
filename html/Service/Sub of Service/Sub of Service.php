@@ -174,24 +174,21 @@ while (($num) <= (count($dirFiles)-1)){
     echo    "<td class='effDate'>" . $fileDate . "</td>
            </tr>";
         
-        
+    // appending to the sql remove query to remove files that don't exists    
     $sqlDelete .= "AND path NOT LIKE '%" . $filename . "' ";
         
     
     // build SQL statement to add data into the database
-    $sql = "INSERT INTO docs (document_number, revision, description, effective_date, path) VALUES ('". $fileData[0] ."', '". $fileData[1] ."', '". $fileData[2] ."', '". $fileDate ."', '" . quotemeta($path) . "')";
+    $sql = "INSERT INTO docs (document_number, revision, description, effective_date, path) VALUES ('". $fileData[0] ."', '". $fileData[1] ."', '". $fileData[2] ."', '". $fileDate ."', '" . str_replace('\\', '/', $path) . "')";
     $conn->query($sql);
         
     $num++;
         
     } // files while end
 } // end of if flag
+        // execute the sql delete command
         echo $sqlDelete;
-        $query = $conn->query($sqlDelete);
-        if($query){
-         echo "<h1>DOG IT RAN!!</h1>";
-        }
-        #print_r($fileNamesHere);
+        $conn->query($sqlDelete);
 } // end of if flag
     echo "</div>"; // end div.files
     echo "</div>"; // end of div.files-folders
