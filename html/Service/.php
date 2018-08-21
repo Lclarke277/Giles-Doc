@@ -7,13 +7,6 @@
 <body>
 
     <?php 
-    // connect to database. Will have to move to external file?
-    $hn = 'localhost';
-    $db = 'giles_docs';
-    $un = 'giles';
-    $pw = '!$iGnIN!';
-    $conn = mysqli_connect($hn, $un, $pw, $db);
-    
     echo "<h1>" . ucwords(strtolower(basename($_SERVER['PHP_SELF'], ".php"))) . "</h1>"; // title of page
     // title is dynamic from the folder name. Camel-case is applied
     
@@ -29,6 +22,9 @@
     $basePath = str_repeat('../', $parDir) . 'baseIndex.php'; 
     $baseSheet = str_repeat('../', $parDir) . 'baseStylesheet.css';
     $baseSearch = str_repeat('../', $parDir) . 'search.php';
+    $baseConnection = str_repeat('../', $parDir) . 'connection.php';
+    
+    require_once($baseConnection);
     echo "<link rel='stylesheet' type='text/css' href=" . $baseSheet . ">"; // dynamic link to baseStylesheet.css
     $logoPath = str_repeat('../', $parDir) . '/media/';
     

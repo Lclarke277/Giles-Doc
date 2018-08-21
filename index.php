@@ -17,6 +17,9 @@
     </div>
     
 <?php 
+    
+    require_once('connection.php');
+    
     $docPath = '.\docs'; // variable for location of document files
     $htmlPath = '.\html'; // variable for location of html files
     $headers = scandir($docPath); // get array of files in the docs dir
@@ -73,12 +76,18 @@
                                } // while
     $maxDir = $maxDir - 2; // end of Max Dir Alg 
     
+$sqlDelete = "DELETE FROM docs WHERE path LIKE 'http://clarke-server/docs/%' ";
+    
+    
     $num2 = 0;
     while ($num2 < $maxDir) {
     // make a link to each sub director under the respective header
     echo "<tr>";
     $num = 0;
     while (($num) <= (count($headers))-1){
+        
+        $sqlDelete .= "AND path NOT LIKE '%" . $headers[$num] . "%' ";
+        
         $subdir = scandir($docPath . '\\' . $headers[$num]);
         unset($subdir[0]);
         unset($subdir[1]);
@@ -112,6 +121,9 @@
     echo "</tr>";
     $num2++;
     } // while
+    
+    // execute command to delete any files from deleted root directories
+    $conn->query($sqlDelete);
     
     echo "</table>
           </div>";

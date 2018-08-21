@@ -7,13 +7,6 @@
 <body>
 
     <?php 
-    // connect to database. Will have to move to external file?
-    $hn = 'localhost';
-    $db = 'giles_docs';
-    $un = 'giles';
-    $pw = '!$iGnIN!';
-    $conn = mysqli_connect($hn, $un, $pw, $db);
-    
     echo "<h1>" . ucwords(strtolower(basename($_SERVER['PHP_SELF'], ".php"))) . "</h1>"; // title of page
     // title is dynamic from the folder name. Camel-case is applied
     
@@ -29,6 +22,9 @@
     $basePath = str_repeat('../', $parDir) . 'baseIndex.php'; 
     $baseSheet = str_repeat('../', $parDir) . 'baseStylesheet.css';
     $baseSearch = str_repeat('../', $parDir) . 'search.php';
+    $baseConnection = str_repeat('../', $parDir) . 'connection.php';
+    
+    require_once($baseConnection);
     echo "<link rel='stylesheet' type='text/css' href=" . $baseSheet . ">"; // dynamic link to baseStylesheet.css
     $logoPath = str_repeat('../', $parDir) . '/media/';
     
@@ -167,6 +163,7 @@ while (($num) <= (count($dirFiles)-1)){
     $fileDate = $fileData[3];
     $fileDate = substr($fileDate, 0, 10); // return the date without the file exention on the end. Date MUST be XX-XX-XXXX format
     
+    // display all of the files in this dir
     echo "<tr class='files'>";
     echo    "<td class='docNum'><a class='file' href='".$path."' rel='noopener noreferrer' target='_blank''><div class='file'></div>" . $fileData[0] . "</a></td>";
     echo    "<td class='revNum'>" . $fileData[1] . "</td>";
