@@ -180,7 +180,6 @@ while (($num) <= (count($dirFiles)-1)){
     
     // build SQL statement to add data into the database
     $sql = "INSERT INTO docs (document_number, revision, description, effective_date, path) VALUES ('". $fileData[0] ."', '". $fileData[1] ."', '". $fileData[2] ."', '". $fileDate ."', '" . str_replace('\\', '/', $path) . "')";
-        echo $sql . "<br>";
     $conn->query($sql);
         
     $num++;
