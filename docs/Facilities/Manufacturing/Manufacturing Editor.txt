@@ -1,7 +1,7 @@
 #Only Replace Numbers / Dates on This Page#
 
 #Production Goal Numbers#^
-185 per shift
+200 per shift
 ^
 2450 per week
 ^
@@ -42,6 +42,6 @@ Please get with your Supervisor to schedule a time to be tested
 ^
 
 #Additonal Comments#^
-Wow who made this website it sure is something
+Any additional notes would go down here. Like Wow who made this website it sure is something
 ^
 

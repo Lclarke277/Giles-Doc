@@ -42,6 +42,31 @@ h1, p, a, th, td, h2 {
     text-decoration: none;
 }
 
+h3, p {
+    text-align: center;
+    color: white;
+    color: white;
+}
+
+p.manufacturing, h3.manufacturing {
+    text-align: center;
+    font-weight: bold;
+    margin-top: -15px;
+    font-size: 20px;
+    color: rgb(51, 141, 244);
+}
+
+p.manufacturing2 {
+    text-align: center;
+}
+
+.safety {
+    text-align: center;
+    font-size: 25px;
+    color: red;
+    margin: -10px 0
+}
+
 h2 {
     color: rgba(255, 255, 255, 0.5);
 }

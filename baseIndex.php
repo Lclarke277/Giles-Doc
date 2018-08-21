@@ -134,9 +134,38 @@ while (($num) <= (count($dirFolders)-1)){ // else (if its a folder) do the follw
             $dataArray = explode('^', $data) ;    
             fclose($myfile);
             
-            echo "<h1>" . $dataArray[1] . "</h1>";
+            // custom manugacturing page:
+            echo 
+            "<h3>Production Goal:</h3>
+            <p class='manufacturing'>$dataArray[1] - $dataArray[2] </p>
+
+            <p class=manufacturing2>Make sure we focus on</p> 
+            <h3 class='safety'>SAFETY</h3>
+            <p class=manufacturing2>Production - Cleaning up - Pouring back salt</p> 
+
+            <h3>Lead Operator Meeting: </h3>
+            <h3 class='manufacturing'>$dataArray[4]</h3>
             
+            <h3>Saftey Topic: </h3>
+            <h3 class='manufacturing'>$dataArray[6]</h3>
             
+            <h3>Production Meetings: </h3>
+            <h3 class='manufacturing'>$dataArray[8]</h3>
+            <h3 class='manufacturing'>$dataArray[9]</h3>
+
+            <h3>Please Note:</h3>
+            <h3>$dataArray[11]</h3>
+
+            <p class=manufacturing3>Lot Numbers Change Every Morning at 07:00</p>
+            <p class=manufacturing>$dataArray[13]</p>
+            <p class=manufacturing>$dataArray[14]</p>
+            <p class=manufacturing>$dataArray[15]</p>
+            <p class=manufacturing>$dataArray[16]</p>
+            <p class=manufacturing>$dataArray[17]</p>
+            <p class=manufacturing>$dataArray[18]</p>
+            <p class=manufacturing>$dataArray[19]</p>
+
+            <h3>$dataArray[21]</h3>";  
         }
     
         

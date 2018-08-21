@@ -128,8 +128,43 @@ while (($num) <= (count($dirFolders)-1)){ // else (if its a folder) do the follw
         
         // if your in manufacturing, apply the special settings
         if ($dir == 'C:\wamp64\www\docs\Facilities\Manufacturing') {
-        echo "<h1>You up in that manu</h1>";
-    }
+            $editorDir = 'C:\wamp64\www\docs\Facilities\Manufacturing\Manufacturing Editor.txt';
+            $myfile = fopen($editorDir, "r") or die("Unable to open file!");
+            $data = fread($myfile,filesize($editorDir));
+            $dataArray = explode('^', $data) ;    
+            fclose($myfile);
+            
+            // custom manugacturing page:
+            echo 
+            "<h3>Production Goal:</h3>
+            <p class='manufacturing'>$dataArray[1] - $dataArray[2] </p>
+
+            <p>Make sure we focus on</p> 
+            <h3 class='saftey'>SAFETY</h3>
+            <p>Production - Cleaning up - Pouring back salt</p> 
+
+            <h3>Lead Operator Meeting: $dataArray[4] </h3>
+            <h3>Saftey Topic: $dataArray[6] </h3>
+            <h3>Production Meetings: $dataArray[8]<br>
+                                     $dataArray[9]</h3>
+
+            <h3>Please Note:</h3>
+            <h3>$dataArray[11]</h3>
+
+            <p>Lot Numbers Change Every Morning at 07:00</p>
+            <p>$dataArray[13]</p>
+            <p>$dataArray[14]</p>
+            <p>$dataArray[15]</p>
+            <p>$dataArray[16]</p>
+            <p>$dataArray[17]</p>
+            <p>$dataArray[18]</p>
+            <p>$dataArray[19]</p>
+
+            <h2>$dataArray[21]</h2>";
+            
+            
+            
+        }
     
         
     $flag = false;
