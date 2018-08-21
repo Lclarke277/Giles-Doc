@@ -126,12 +126,6 @@ while (($num) <= (count($dirFolders)-1)){ // else (if its a folder) do the follw
     
     echo "<div class='files'>";
         
-        // if your in manufacturing, apply the special settings
-        if (ucwords(strtolower(basename($_SERVER['PHP_SELF'], ".php"))) == 'Manufacturing') {
-        
-    }
-    
-        
     $flag = false;
     if (count($dirFiles) == 0) { // if there are no files, don't display the table
             echo "<h2>There are no files in this directory</h2>";
@@ -156,12 +150,6 @@ $num = 0; // displaying files in alphabetical order
 $fileNamesHere = array();        
 while (($num) <= (count($dirFiles)-1)){
     $filename = $dirFiles[$num];
-    echo $filename;
-    
-    if($filename == 'Manufacturing Editor.txt') {
-        
-    }
-    
     array_push($fileNamesHere, $filename);
     $fileData = explode('^', $filename); // get the data based on the % delimiter in the filename
     $path = str_replace('C:\wamp64\www', 'http://clarke-server', $dir . '/' . $filename); // generate the path to the file

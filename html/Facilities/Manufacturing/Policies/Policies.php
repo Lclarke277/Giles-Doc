@@ -157,8 +157,7 @@ $fileNamesHere = array();
 while (($num) <= (count($dirFiles)-1)){
     $filename = $dirFiles[$num];
     echo $filename;
-    
-    if($filename == 'Manufacturing Editor.txt') {
+    if($filename = 'Manufacturing Editor.txt'){
         
     }
     
