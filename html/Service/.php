@@ -167,6 +167,7 @@ while (($num) <= (count($dirFiles)-1)){
     $fileDate = $fileData[3];
     $fileDate = substr($fileDate, 0, 10); // return the date without the file exention on the end. Date MUST be XX-XX-XXXX format
     
+    // display all of the files in this dir
     echo "<tr class='files'>";
     echo    "<td class='docNum'><a class='file' href='".$path."' rel='noopener noreferrer' target='_blank''><div class='file'></div>" . $fileData[0] . "</a></td>";
     echo    "<td class='revNum'>" . $fileData[1] . "</td>";

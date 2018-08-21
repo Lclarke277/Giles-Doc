@@ -116,12 +116,15 @@
     echo "</table>
           </div>";
     
+    
+    
     $dir = str_replace('html', 'docs', getcwd());  
     $parDir = (substr_count($dir, '\\')) - 2; // variable to find out how to get back to baseIndex.php 
     $baseSearch = str_repeat('../', $parDir) . 'search.php';
     
     echo
     "<div class='searchDiv'>
+     <h3>Document Search</h3>
         <form  method='post' action='" . $baseSearch . "'  id='searchform'> 
            <input  class='searchBar' type='text' name='name' placeholder='Doc Number'> 
            <input  class='searchButton' type='submit' name='submit' value='Search'> 
