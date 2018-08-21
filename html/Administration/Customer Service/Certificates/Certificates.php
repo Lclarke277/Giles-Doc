@@ -127,8 +127,8 @@ while (($num) <= (count($dirFolders)-1)){ // else (if its a folder) do the follw
     echo "<div class='files'>";
         
         // if your in manufacturing, apply the special settings
-        if (ucwords(strtolower(basename($_SERVER['PHP_SELF'], ".php"))) == 'Manufacturing') {
-        
+        if ($dir == 'C:\wamp64\www\docs\Facilities\Manufacturing') {
+        echo "<h1>You up in that manu</h1>";
     }
     
         
@@ -156,20 +156,17 @@ $num = 0; // displaying files in alphabetical order
 $fileNamesHere = array();        
 while (($num) <= (count($dirFiles)-1)){
     $filename = $dirFiles[$num];
-    echo $filename;
     
-    if($filename == 'Manufacturing Editor.txt') {
-        
-    }
     
     array_push($fileNamesHere, $filename);
     $fileData = explode('^', $filename); // get the data based on the % delimiter in the filename
     $path = str_replace('C:\wamp64\www', 'http://clarke-server', $dir . '/' . $filename); // generate the path to the file
     $path = str_replace('\\', '/', $path);
     
+    // if the file is invalid, skip it and don't display
     if (isset($fileData[1]) == false) {
-        echo "<h1>Some files here seem to be mis-formatted. Please follow the guide</h1>";
-        break;
+        $num++;
+        continue;
     } else {
     
     $fileDate = $fileData[3];
