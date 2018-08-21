@@ -139,35 +139,53 @@ while (($num) <= (count($dirFolders)-1)){ // else (if its a folder) do the follw
             "<h3>Production Goal:</h3>
             <p class='manufacturing'>$dataArray[1] - $dataArray[2] </p>
 
-            <p>Make sure we focus on</p> 
-            <h3 class='saftey'>SAFETY</h3>
-            <p>Production - Cleaning up - Pouring back salt</p> 
+            <p class=manufacturing2>Make sure we focus on</p> 
+            <h3 class='safety'>SAFETY</h3>
+            <p class=manufacturing2>Production - Cleaning up - Pouring back salt</p> 
 
-            <h3>Lead Operator Meeting: $dataArray[4] </h3>
-            <h3>Saftey Topic: $dataArray[6] </h3>
-            <h3>Production Meetings: $dataArray[8]<br>
-                                     $dataArray[9]</h3>
+            <h3>Lead Operator Meeting: </h3>
+            <h3 class='manufacturing'>$dataArray[4]</h3>
+            
+            <h3>Saftey Topic: </h3>
+            <h3 class='manufacturing'>$dataArray[6]</h3>
+            
+            <h3>Production Meetings: </h3>
+            <h3 class='manufacturing'>$dataArray[8]</h3>
+            <h3 class='manufacturing'>$dataArray[9]</h3>
 
             <h3>Please Note:</h3>
             <h3>$dataArray[11]</h3>
 
-            <p>Lot Numbers Change Every Morning at 07:00</p>
-            <p>$dataArray[13]</p>
-            <p>$dataArray[14]</p>
-            <p>$dataArray[15]</p>
-            <p>$dataArray[16]</p>
-            <p>$dataArray[17]</p>
-            <p>$dataArray[18]</p>
-            <p>$dataArray[19]</p>
+            <p class=manufacturing3>Lot Numbers Change Every Morning at 07:00</p>
+            <p class=manufacturing>$dataArray[13]</p>
+            <p class=manufacturing>$dataArray[14]</p>
+            <p class=manufacturing>$dataArray[15]</p>
+            <p class=manufacturing>$dataArray[16]</p>
+            <p class=manufacturing>$dataArray[17]</p>
+            <p class=manufacturing>$dataArray[18]</p>
+            <p class=manufacturing>$dataArray[19]</p>
 
-            <h2>$dataArray[21]</h2>";
-            
-            
-            
-        }
-    
+            <h3>$dataArray[21]</h3>";  
         
-    $flag = false;
+        $flag = false;
+    if (count($dirFiles) <= 1) { // if there are no files, don't display the table
+            echo "<h2>There are no files in this directory</h2>";
+            $flag = true;
+    };
+    
+    if (!$flag) {
+    echo "<table>
+      <tr class='fixedHeader'>
+        <th>Document #</th>
+        <th>Revision</th>
+        <th>Description</th>
+        <th>Effective</th>
+      </tr>";
+        
+    } 
+        } else { // if it's not the manufacturing page
+        
+        $flag = false;
     if (count($dirFiles) == 0) { // if there are no files, don't display the table
             echo "<h2>There are no files in this directory</h2>";
             $flag = true;
@@ -181,6 +199,7 @@ while (($num) <= (count($dirFolders)-1)){ // else (if its a folder) do the follw
         <th>Description</th>
         <th>Effective</th>
       </tr>";
+    } 
 
 // building advanced SQL statement to delete any entries that exists in the database but files dont exists in the current dir
 $sqlDir = str_replace('C:\wamp64\www\\', 'http://clarke-server/' , $dir);

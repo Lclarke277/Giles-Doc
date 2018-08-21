@@ -166,10 +166,26 @@ while (($num) <= (count($dirFolders)-1)){ // else (if its a folder) do the follw
             <p class=manufacturing>$dataArray[19]</p>
 
             <h3>$dataArray[21]</h3>";  
-        }
     
-        
+    // manufacturing will always have 1 file, the editor txt file. So we have to run this inside the loop to change the value it checks for just for manufacturing file        
     $flag = false;
+    if (count($dirFiles) <= 1) { // if there are no files, don't display the table
+            $flag = true;
+    };
+    
+    if (!$flag) {
+    echo "<table>
+      <tr class='fixedHeader'>
+        <th>Document #</th>
+        <th>Revision</th>
+        <th>Description</th>
+        <th>Effective</th>
+      </tr>";
+        
+    } 
+        } else { // if it's not the manufacturing page
+        
+        $flag = false;
     if (count($dirFiles) == 0) { // if there are no files, don't display the table
             echo "<h2>There are no files in this directory</h2>";
             $flag = true;
@@ -183,6 +199,7 @@ while (($num) <= (count($dirFolders)-1)){ // else (if its a folder) do the follw
         <th>Description</th>
         <th>Effective</th>
       </tr>";
+    } 
 
 // building advanced SQL statement to delete any entries that exists in the database but files dont exists in the current dir
 $sqlDir = str_replace('C:\wamp64\www\\', 'http://clarke-server/' , $dir);
