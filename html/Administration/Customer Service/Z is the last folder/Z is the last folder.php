@@ -132,7 +132,7 @@ while (($num) <= (count($dirFolders)-1)){ // else (if its a folder) do the follw
         
     $flag = false;
     if (count($dirFiles) == 0) { // if there are no files, don't display the table
-            echo "<h1>There are no files in this directory</h1>";
+            echo "<h2>There are no files in this directory</h2>";
             $flag = true;
     };
     
@@ -151,7 +151,7 @@ while (($num) <= (count($dirFiles)-1)){
     $filename = $dirFiles[$num];
     $fileData = explode('^', $filename); // get the data based on the % delimiter in the filename
     $path = str_replace('C:\wamp64\www', 'http://clarke-server', $dir . '/' . $filename); // generate the path to the file
-    $path = str_replace('/', '\\', $path);
+    $path = str_replace('\\', '/', $path);
     
     if (isset($fileData[1]) == false) {
         echo "<h1>Some files here seem to be mis-formatted. Please follow the guide</h1>";
@@ -167,6 +167,14 @@ while (($num) <= (count($dirFiles)-1)){
     echo    "<td class='description'>" . $fileData[2] . "</td>";
     echo    "<td class='effDate'>" . $fileDate . "</td>
            </tr>";
+        
+        
+    $sqlCheck = "SELECT path FROM docs WHERE path =" . quotemeta($path) . "";
+    $result = $conn->query($sqlCheck);
+        if($result) {
+            echo "<h1>IT EXISTS DOG</h1>";
+        }
+        
     
     // build SQL statement to add data into the database
     $sql = "INSERT INTO docs (document_number, revision, description, effective_date, path) VALUES ('". $fileData[0] ."', '". $fileData[1] ."', '". $fileData[2] ."', '". $fileDate ."', '" . quotemeta($path) . "')";
