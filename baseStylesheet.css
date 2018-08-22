@@ -301,11 +301,18 @@ table {
 	background: rgba(34, 100, 176, 0.3);
 }
 
+/* this is CSS for small screens (tablet) */
 @media only screen and (max-width: 840px) {
     
     h1 {
-        color: yellow;
+        color: white;
         font-size: 35px;
+        margin-top: -35px;
+    }
+    
+    h2 {
+        font-size: 20px;
+        text-align: center;
     }
     
     a.button {
@@ -319,8 +326,6 @@ table {
         margin: 0 auto;
     }
     
-    
-    
     input.searchBar {
         width: 100px;
         font-size: 20px;
@@ -331,11 +336,23 @@ table {
     }
     
     img.premag-logo, img.giles-logo{
-        display:none;
+        top: 2%;
+        width: 16%;
+        height: auto;
+    }
+    
+    img.redLine {
+        margin-top: -30px;
+    }
+    
+    img.isLogo {
+        height: 45px;
+        width: auto;
+        bottom: 10px;
     }
     
     div.file-container {
-        margin-top: -33px;
+        margin-top: -47px;
     }
     
     div.files-folders {
@@ -344,47 +361,88 @@ table {
     }
     
     div.folders {
+        overflow: scroll;
         width: 100%; 
-        height: auto;
+        height: 29%;
         max-height: 200px;
-        overflow-y: auto;
-        margin-bottom: 20px;
         border: none;
+        margin-bottom: 10px;
+        border: none !important;
     }
     
     a.folder {
-        font-size: 30px;
+        font-size: 25px;
     }
     
     div.folder {
         background-size: 100%;
-        width: 30px;
-        height: 30px;
+        width: 25px;
+        height: 25px;
         margin-right: 7px;
-    }
-    
-    div.files {
-        
-    }
-    
-    a.file {
-        font-size: 35px;
     }
     
     div.file {
         margin-top: 5px;
         background-size: 100%;
-        width: 25px;
-        height: 35px;
+        width: 20px;
+        height: 25px;
         margin-right: 7px;
+        margin-left: 15px;
+    }
+    
+    div.files {
+        margin-top: -25px;
+        width: 100%;
+        border: none;
+        height: 72.5%;
+    }
+    
+    a.file {
+        font-size: 20px;
+    }
+    
+    table {
+        z-index: 5;
+        margin-top: -5px;
+        padding: 0;
+    }
+    
+    table tbody, table thead {
+        display: block;
+    }
+    
+    table tbody {
+       overflow: auto;
+       height: 420px;
+    }
+    
+    th, td {
+        padding: 0;
+        margin: 0;
+        min-width: 250px;
+    }
+    
+    a.file {
+        font-size: 18px;
+        margin-top: -3px;
     }
     
     th, td.docNum, td.revNum, td.effDate {
-        font-size: 35px;
+        font-size: 20px;
+        padding: 0;
+        margin: 0;
+    }
+    
+    td.revNum, th.revNum {
+        min-width: 100px;
+    }
+    
+    td.effDate, th.effDate {
+        min-width: 120px;
     }
     
     td.description {
-        font-size: 30px;
+        font-size: 18px;
     }
     
     td {
@@ -399,17 +457,12 @@ table {
         margin-top: -45px;
     }
     
-    h2 {
-        font-size: 20px;
-        text-align: center;
-    }
-    
     img.premag-logo, img.giles-logo, img.islogo {
         display: none;
     }
     
     img.redline {
-        top: 50px;
+        top: 83px;
     }
     
     a.button {
