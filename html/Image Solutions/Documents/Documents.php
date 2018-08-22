@@ -40,7 +40,7 @@
     
     echo "<div class='buttons'>";
     echo "<div class='button-container'>";
-        echo "<a class='button' href='http://clarke-server/index.php'>Home</a>"; // home button
+        echo "<a class='button' href='http://lclarkeserver.ddns.net/index.php'>Home</a>"; // home button
 
         // dynamic back button
         $tmp = explode('\\', dirname(__DIR__));
@@ -49,12 +49,12 @@
     // if backPage would send you to html/html.php, instead send to the home page
     if ($backPage == '\html.php'){
         
-        $backButton = 'http://clarke-server/index.php'; // path generation
+        $backButton = 'http://lclarkeserver.ddns.net/index.php'; // path generation
         echo "<a class='button' href='".$backButton."'>Back</a>"; // back button
         
     } else {
         
-        $backButton = str_replace('C:\wamp64\www', 'http://clarke-server', dirname(__DIR__)) . $backPage; // path generation
+        $backButton = str_replace('C:\wamp64\www', 'http://lclarkeserver.ddns.net', dirname(__DIR__)) . $backPage; // path generation
         echo "<a class='button' href='".$backButton."'>Back</a>"; // back button
     } // else
     
@@ -150,7 +150,7 @@ $num = 0; // displaying files in alphabetical order
 while (($num) <= (count($dirFiles)-1)){
     $filename = $dirFiles[$num];
     $fileData = explode('^', $filename); // get the data based on the % delimiter in the filename
-    $path = str_replace('C:\wamp64\www', 'http://clarke-server', $dir . '/' . $filename); // generate the path to the file
+    $path = str_replace('C:\wamp64\www', 'http://lclarkeserver.ddns.net', $dir . '/' . $filename); // generate the path to the file
     $path = str_replace('/', '\\', $path);
     
     if (isset($fileData[1]) == false) {
