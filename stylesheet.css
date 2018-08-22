@@ -170,3 +170,113 @@ video {
   z-index: -100;
   overflow: hidden
 }
+
+/* this is CSS for small screens (tablet) */
+@media only screen and (max-width: 840px) {
+    
+    video {
+        display: none;
+    }
+    
+    html, body {
+        background-image: url(media/gradientBackground.jpg);
+    }
+    
+       img#isLogo {
+        display: none;
+    }
+    
+    img#giles-logo {
+        width: 250px;
+        margin-top: 10px;
+    }
+    
+    img.redLine {
+        margin-top: -74px;
+    }
+    
+    h1#title {
+        color: white;
+    }
+  
+    th, h3 {
+        font-size: 20px;
+    }
+    
+    td {
+        font-size: 19px;
+    }
+    
+    div.searchDiv {
+        height: 87px;
+        padding-top: 7px;
+    }
+    
+    input.searchBar {
+        font-size: 20px;   
+    }
+    
+    input.searchButton {
+        font-size: 20px;
+    }
+    
+    table {
+        margin-top: 10px;
+    }
+    
+    
+    
+    
+}
+
+/* this is CSS for smallest screens (phone) */
+@media only screen and (max-width: 545px) {
+    
+    img#giles-logo {
+        width: 200px;
+        margin-top: 22px;
+    }
+    
+    img.redLine {
+        margin-top: -98px;
+        width: 90%;
+    }
+    
+    h1#title {
+        font-size: 30px;
+        margin-bottom: 15px;
+    }
+    
+    div#table {
+        border-top: 1px solid rgba(34, 100, 176, 0.8); ;
+        border-bottom: 1px solid rgba(34, 100, 176, 0.8); 
+        height: auto;
+        margin-bottom: 0px;
+    }
+    
+    th, td {
+        display: block;
+        min-width: 200px;
+    }
+    
+    th {
+        display: none;
+    }
+    
+    td {
+        padding: 0;
+        font-size: 25px;
+        font-weight: bolder;
+    }
+    
+    a {
+        text-decoration: underline;
+        text-decoration-color: rgba(34, 100, 176, 0.8);
+    }
+    
+    h3 {
+        font-size: 25px;
+    }
+    
+    
+}
