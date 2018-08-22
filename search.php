@@ -18,7 +18,7 @@
 if(isset($_POST['submit'])) {
    $document_name= "%" . $_POST['name'] . "%"; 
        
-$search_stmt = $conn->prepare("SELECT document_number, revision, description, effective_date, path FROM docs WHERE (document_number LIKE ?)");
+$search_stmt = $conn->prepare("SELECT document_number, revision, description, effective_date, path FROM docs WHERE (document_number LIKE ?) ORDER BY document_number");
 $search_stmt->bind_param('s', $document_name);
 $search_stmt->execute();
 $search_stmt->store_result();

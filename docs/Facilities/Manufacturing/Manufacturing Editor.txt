@@ -1,7 +1,7 @@
 #Only Replace Numbers / Dates on This Page#
 
 #Production Goal Numbers#^
-200 per shift
+250 per shift
 ^
 2450 per week
 ^
@@ -11,7 +11,7 @@ September 11th @ 15:00
 ^
 
 #Saftey Topic#^
-Hearing Convservation
+Hearing Conservation
 ^
 
 #Production Meetings#^
