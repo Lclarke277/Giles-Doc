@@ -1,7 +1,7 @@
 #Only Replace Numbers / Dates on This Page#
 
 #Production Goal Numbers#^
-250 per shift
+200 per shift
 ^
 2450 per week
 ^

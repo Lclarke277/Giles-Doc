@@ -204,7 +204,8 @@ while (($num) <= (count($dirFolders)-1)){ // else (if its a folder) do the follw
         <th class='effDate'>Effective</th>
       </tr>
       </thead>";
-    } 
+    }
+}
 
 // building advanced SQL statement to delete any entries that exists in the database but files dont exists in the current dir
 $sqlDir = str_replace('C:\wamp64\www\\', 'http://lclarkeserver.ddns.net/' , $dir);
@@ -253,7 +254,7 @@ while (($num) <= (count($dirFiles)-1)){
 } // end of if flag
         // execute the sql delete command
         $conn->query($sqlDelete);
-} // end of if flag
+ // end of if flag
     echo "</div>"; // end div.files
     echo "</div>"; // end of div.files-folders
     echo "</div>"; // end of div.files-container
