@@ -132,6 +132,11 @@ div.button-container {
     float: left;
 }
 
+input {
+-webkit-appearance: none;
+-moz-appearance: none;
+}
+
 input.searchBar {
     width: 200px;
     border: 1px solid black;
@@ -303,10 +308,6 @@ table {
         font-size: 35px;
     }
     
-    img.redline {
-        top: 70px;
-    }
-    
     a.button {
         font-size: 20px;
         text-align: center;
@@ -394,10 +395,21 @@ table {
 /* this is CSS for smallest screens (phone) */
 @media only screen and (max-width: 545px) {
     h1 {
-        color: red;
+        color: white;
+        margin-top: -45px;
     }
+    
+    h2 {
+        font-size: 20px;
+        text-align: center;
+    }
+    
     img.premag-logo, img.giles-logo, img.islogo {
         display: none;
+    }
+    
+    img.redline {
+        top: 50px;
     }
     
     a.button {
@@ -409,6 +421,7 @@ table {
     div.button-container {
         width: 358px;
         margin: 0 auto;
+        margin-top: -5px;
     }
     
     form {
@@ -420,7 +433,9 @@ table {
     }
     
     div.file-container {
-        bottom: 1%;
+        bottom: 0;
+        border-bottom: none;
+        margin-top: -63px;
     }
     
     div.files-folders {
@@ -435,31 +450,36 @@ table {
         overflow-y: auto;
         margin-bottom: 20px;
         border: none;
+        padding-top: 0;
     }
     
     a.folder {
-        font-size: 25px;
+        font-size: 20px;
         margin: 5px 0;
         padding-bottom: -5px;
     }
     
     div.folder {
         background-size: 100%;
-        width: 30px;
-        height: 30px;
+        width: 25px;
+        height: 25px;
         margin-right: 7px;
         margin-bottom: -5px;
     }
     
     div.file {
-        margin-left: 10px;
+        margin-top: 5px;
+        background-size: 100%;
+        width: 20px;
+        height: 25px;
+        margin-right: 7px;
     }
     
     div.files {
         margin-top: -25px;
         width: 100%;
         border: 1px solid rgba(34, 100, 176, 0.8);
-        height: 82%;
+        height: 70%;
     }
     
     table {
@@ -479,33 +499,30 @@ table {
     th, td {
         padding: 0;
         margin: 0;
-        min-width: 350px;
+        min-width: 250px;
     }
     
     a.file {
-        font-size: 25px;
-    }
-    
-    div.file {
-        margin-top: 5px;
-        background-size: 100%;
-        width: 25px;
-        height: 35px;
-        margin-right: 7px;
+        font-size: 18px;
+        margin-top: -3px;
     }
     
     th, td.docNum, td.revNum, td.effDate {
-        font-size: 25px;
+        font-size: 20px;
         padding: 0;
         margin: 0;
     }
     
-    td.revNum, th.revNum, td.effDate, th.effDate {
-        min-width: 150px;
+    td.revNum, th.revNum {
+        min-width: 100px;
+    }
+    
+    td.effDate, th.effDate {
+        min-width: 120px;
     }
     
     td.description {
-        font-size: 20px;
+        font-size: 18px;
     }
     
     td {

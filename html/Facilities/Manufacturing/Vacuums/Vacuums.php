@@ -1,6 +1,7 @@
 <html>
     
 <head>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
     
@@ -175,12 +176,14 @@ while (($num) <= (count($dirFolders)-1)){ // else (if its a folder) do the follw
     
     if (!$flag) {
     echo "<table>
+    <thead>
       <tr class='fixedHeader'>
         <th>Document #</th>
-        <th>Revision</th>
+        <th class='revNum'>Revision</th>
         <th>Description</th>
-        <th>Effective</th>
-      </tr>";
+        <th class='effDate'>Effective</th>
+      </tr>
+      </thead>";
         
     } 
         } else { // if it's not the manufacturing page
@@ -193,12 +196,14 @@ while (($num) <= (count($dirFolders)-1)){ // else (if its a folder) do the follw
     
     if (!$flag) {
     echo "<table>
+    <thead>
       <tr class='fixedHeader'>
         <th>Document #</th>
-        <th>Revision</th>
+        <th class='revNum'>Revision</th>
         <th>Description</th>
-        <th>Effective</th>
-      </tr>";
+        <th class='effDate'>Effective</th>
+      </tr>
+      </thead>";
     } 
 
 // building advanced SQL statement to delete any entries that exists in the database but files dont exists in the current dir
