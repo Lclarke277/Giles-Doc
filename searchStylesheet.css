@@ -98,6 +98,11 @@ div.button-container {
     margin: 0 auto;
 }
 
+input {
+-webkit-appearance: none;
+-moz-appearance: none;
+}
+
 #searchform {
     display: inline-block;
     float: left;
@@ -330,6 +335,17 @@ table {
     div.file-container {
         margin-top: -50px;
     }
+    
+    table {
+        width: auto;
+    }
+    
+    th, td {
+        width: auto;
+        min-width: 150px;
+    }
+    
+    
     
 }
 
