@@ -1,19 +1,13 @@
 <html>
     
 <head>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
     
 <body>
 
     <?php 
-    // connect to database. Will have to move to external file?
-    $hn = 'localhost';
-    $db = 'giles_docs';
-    $un = 'giles';
-    $pw = '!$iGnIN!';
-    $conn = mysqli_connect($hn, $un, $pw, $db);
-    
     echo "<h1>" . ucwords(strtolower(basename($_SERVER['PHP_SELF'], ".php"))) . "</h1>"; // title of page
     // title is dynamic from the folder name. Camel-case is applied
     
@@ -29,6 +23,9 @@
     $basePath = str_repeat('../', $parDir) . 'baseIndex.php'; 
     $baseSheet = str_repeat('../', $parDir) . 'baseStylesheet.css';
     $baseSearch = str_repeat('../', $parDir) . 'search.php';
+    $baseConnection = str_repeat('../', $parDir) . 'connection.php';
+    
+    require_once($baseConnection);
     echo "<link rel='stylesheet' type='text/css' href=" . $baseSheet . ">"; // dynamic link to baseStylesheet.css
     $logoPath = str_repeat('../', $parDir) . '/media/';
     
@@ -130,53 +127,133 @@ while (($num) <= (count($dirFolders)-1)){ // else (if its a folder) do the follw
     
     echo "<div class='files'>";
         
+        // if your in manufacturing, apply the special settings
+        if ($dir == 'C:\wamp64\www\docs\Facilities\Manufacturing') {
+            $editorDir = 'C:\wamp64\www\docs\Facilities\Manufacturing\Manufacturing Editor.txt';
+            $myfile = fopen($editorDir, "r") or die("Unable to open file!");
+            $data = fread($myfile,filesize($editorDir));
+            $dataArray = explode('^', $data) ;    
+            fclose($myfile);
+            
+            // custom manugacturing page:
+            echo 
+            "<h3>Production Goal:</h3>
+            <p class='manufacturing'>$dataArray[1] - $dataArray[2] </p>
+
+            <p class=manufacturing2>Make sure we focus on</p> 
+            <h3 class='safety'>SAFETY</h3>
+            <p class=manufacturing2>Production - Cleaning up - Pouring back salt</p> 
+
+            <h3>Lead Operator Meeting: </h3>
+            <h3 class='manufacturing'>$dataArray[4]</h3>
+            
+            <h3>Saftey Topic: </h3>
+            <h3 class='manufacturing'>$dataArray[6]</h3>
+            
+            <h3>Production Meetings: </h3>
+            <h3 class='manufacturing'>$dataArray[8]</h3>
+            <h3 class='manufacturing'>$dataArray[9]</h3>
+
+            <h3>Please Note:</h3>
+            <h3>$dataArray[11]</h3>
+
+            <p class=manufacturing3>Lot Numbers Change Every Morning at 07:00</p>
+            <p class=manufacturing>$dataArray[13]</p>
+            <p class=manufacturing>$dataArray[14]</p>
+            <p class=manufacturing>$dataArray[15]</p>
+            <p class=manufacturing>$dataArray[16]</p>
+            <p class=manufacturing>$dataArray[17]</p>
+            <p class=manufacturing>$dataArray[18]</p>
+            <p class=manufacturing>$dataArray[19]</p>
+
+            <h3>$dataArray[21]</h3>";  
+    
+    // manufacturing will always have 1 file, the editor txt file. So we have to run this inside the loop to change the value it checks for just for manufacturing file        
     $flag = false;
-    if (count($dirFiles) == 0) { // if there are no files, don't display the table
-            echo "<h1>There are no files in this directory</h1>";
+    if (count($dirFiles) <= 1) { // if there are no files, don't display the table
             $flag = true;
     };
     
     if (!$flag) {
     echo "<table>
+    <thead>
       <tr class='fixedHeader'>
         <th>Document #</th>
-        <th>Revision</th>
+        <th class='revNum'>Revision</th>
         <th>Description</th>
-        <th>Effective</th>
-      </tr>";
-    
-$num = 0; // displaying files in alphabetical order 
+        <th class='effDate'>Effective</th>
+      </tr>
+      </thead>";
         
+    } 
+        } else { // if it's not the manufacturing page
+        
+        $flag = false;
+    if (count($dirFiles) == 0) { // if there are no files, don't display the table
+            echo "<h2>There are no files in this directory</h2>";
+            $flag = true;
+    };
+    
+    if (!$flag) {
+    echo "<table>
+    <thead>
+      <tr class='fixedHeader'>
+        <th>Document #</th>
+        <th class='revNum'>Revision</th>
+        <th>Description</th>
+        <th class='effDate'>Effective</th>
+      </tr>
+      </thead>";
+    } 
+
+// building advanced SQL statement to delete any entries that exists in the database but files dont exists in the current dir
+$sqlDir = str_replace('C:\wamp64\www\\', 'http://clarke-server/' , $dir);
+$sqlDir = str_replace('\\', '/', $sqlDir);
+$sqlDelete = "DELETE FROM docs WHERE path LIKE '" .  $sqlDir . "%' ";
+        
+$num = 0; // displaying files in alphabetical order 
+$fileNamesHere = array();        
 while (($num) <= (count($dirFiles)-1)){
-    $filename = $dirFiles[$num];
+    // removed ' from files. It will break sql if it contains a '
+    $filename = str_replace("'", '', $dirFiles[$num]);
+    
+    array_push($fileNamesHere, $filename);
     $fileData = explode('^', $filename); // get the data based on the % delimiter in the filename
     $path = str_replace('C:\wamp64\www', 'http://clarke-server', $dir . '/' . $filename); // generate the path to the file
-    $path = str_replace('/', '\\', $path);
+    $path = str_replace('\\', '/', $path);
     
+    // if the file is invalid, skip it and don't display
     if (isset($fileData[1]) == false) {
-        echo "<h1>Some files here seem to be mis-formatted. Please follow the guide</h1>";
-        break;
+        $num++;
+        continue;
     } else {
     
     $fileDate = $fileData[3];
     $fileDate = substr($fileDate, 0, 10); // return the date without the file exention on the end. Date MUST be XX-XX-XXXX format
     
+    // display all of the files in this dir
     echo "<tr class='files'>";
     echo    "<td class='docNum'><a class='file' href='".$path."' rel='noopener noreferrer' target='_blank''><div class='file'></div>" . $fileData[0] . "</a></td>";
     echo    "<td class='revNum'>" . $fileData[1] . "</td>";
     echo    "<td class='description'>" . $fileData[2] . "</td>";
     echo    "<td class='effDate'>" . $fileDate . "</td>
            </tr>";
+        
+    // appending to the sql remove query to remove files that don't exists    
+    $sqlDelete .= "AND path NOT LIKE '%" . $filename . "' ";
+        
     
     // build SQL statement to add data into the database
-    $sql = "INSERT INTO docs (document_number, revision, description, effective_date, path) VALUES ('". $fileData[0] ."', '". $fileData[1] ."', '". $fileData[2] ."', '". $fileDate ."', '" . quotemeta($path) . "')";
+    $sql = "INSERT INTO docs (document_number, revision, description, effective_date, path) VALUES ('". $fileData[0] ."', '". $fileData[1] ."', '". $fileData[2] ."', '". $fileDate ."', '" . str_replace('\\', '/', $path) . "')";
     $conn->query($sql);
         
     $num++;
         
     } // files while end
 } // end of if flag
-} // else
+        // execute the sql delete command
+        $conn->query($sqlDelete);
+} // end of if flag
     echo "</div>"; // end div.files
     echo "</div>"; // end of div.files-folders
     echo "</div>"; // end of div.files-container
