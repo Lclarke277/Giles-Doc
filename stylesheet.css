@@ -114,6 +114,11 @@ div.searchDiv {
     margin-top: -2px;
 }
 
+input {
+-webkit-appearance: none;
+-moz-appearance: none;
+}
+
 input.searchBar {
     width: 200px;
     border: 1px solid rgba(255, 255, 255, 0.3); 
@@ -174,6 +179,10 @@ video {
 /* this is CSS for small screens (tablet) */
 @media only screen and (max-width: 840px) {
     
+    html, body {
+        overflow: auto;
+    }
+    
     video {
         display: none;
     }
@@ -192,7 +201,12 @@ video {
     }
     
     img.redLine {
-        margin-top: -74px;
+        position: inherit;
+        display: block;
+        margin-top: -95px;
+        margin-right: auto;
+        margin-left: auto;
+        margin-bottom: 120px;
     }
     
     h1#title {
@@ -238,7 +252,7 @@ video {
     }
     
     img.redLine {
-        margin-top: -98px;
+        margin-top: -90px;
         width: 90%;
     }
     
@@ -264,8 +278,9 @@ video {
     }
     
     td {
+        margin: 5px 0;
         padding: 0;
-        font-size: 25px;
+        font-size: 20px;
         font-weight: bolder;
     }
     
@@ -277,6 +292,8 @@ video {
     h3 {
         font-size: 25px;
     }
+    
+    
     
     
 }
