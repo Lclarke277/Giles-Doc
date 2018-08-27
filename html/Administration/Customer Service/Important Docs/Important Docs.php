@@ -11,6 +11,7 @@
     echo "<h1>" . ucwords(strtolower(basename($_SERVER['PHP_SELF'], ".php"))) . "</h1>"; // title of page
     // title is dynamic from the folder name. Camel-case is applied
     
+    $h1 = (basename($_SERVER['PHP_SELF'], ".php"));
     $dir = str_replace('html', 'docs', getcwd()); 
     $templateDir = substr(getcwd(), 0, 14) . "templates";
     $currentWorkingDir = substr(getcwd(), 19, 90);
@@ -241,7 +242,7 @@ while (($num) <= (count($dirFiles)-1)){
            </tr>";
         
     // appending to the sql remove query to remove files that don't exists    
-    $sqlDelete .= "AND path NOT LIKE '%" . $filename . "' ";
+    $sqlDelete .= "AND path NOT LIKE '%" . $h1 . "/" . $filename . "' ";
         
     
     // build SQL statement to add data into the database
@@ -252,8 +253,16 @@ while (($num) <= (count($dirFiles)-1)){
         
     } // files while end
 } // end of if flag
+    
+    $num = 0;
+    while ($num < (count($dirFolders) -1)) {
+         $sqlDelete .= "AND path NOT LIKE '%" . $h1 . "/" . $dirFolders[$num] . "%' ";
+         $num++;
+    }
+    
         // execute the sql delete command
         $conn->query($sqlDelete);
+    
  // end of if flag
     echo "</div>"; // end div.files
     echo "</div>"; // end of div.files-folders

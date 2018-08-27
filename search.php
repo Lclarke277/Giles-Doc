@@ -16,6 +16,56 @@
     $pw = '!$iGnIN!';
     $conn = mysqli_connect($hn, $un, $pw, $db); 
 
+if(empty($_POST['name'])) {
+    echo "<h1>Search Results</h1>"; // title of page
+    // title is dynamic from the folder name. Camel-case is applied
+    
+    $dir = str_replace('html', 'docs', getcwd()); 
+    $templateDir = substr(getcwd(), 0, 14) . "templates";
+    $currentWorkingDir = substr(getcwd(), 19, 90);
+    
+    $parDir = (substr_count($dir, '\\')) - 2; // variable to find out how to get back to baseIndex.php 
+    $basePath = str_repeat('../', $parDir) . 'baseIndex.php'; 
+    $baseSearch = str_repeat('../', $parDir) . 'search.php';
+    $logoPath = str_repeat('../', $parDir) . '/media/';
+    
+    echo "<img class='giles-logo' src=".$logoPath."giles-white.png>"; // giles corner logo
+    echo "<img class='premag-logo' src=".$logoPath."premag-white.png>"; // premag corner logo
+    echo "<img class='redline' src=".$logoPath."line-red.png>"; // red line graphic
+    echo "<img class='isLogo' src=".$logoPath."isLogo.png>"; // IS corner logo
+    
+    
+    echo "<div class='buttons'>";
+    echo "<div class='button-container'>";
+        echo "<a class='button' href='http://lclarkeserver.ddns.net/index.php'>Home</a>"; // home button
+    
+    // search form
+    echo "<form  method='post' action='" . $baseSearch . "'  id='searchform'> 
+               <input  class='searchBar' type='text' name='name' placeholder='Doc Number'> 
+               <input  class='searchButton' type='submit' name='submit' value='Search'> 
+          </form>";
+    
+    
+    echo "</div>
+          </div>
+          <br>
+          <div class='file-container'>
+          <div class='files-folders'>
+    
+        <div class='files'>";
+    
+    echo "<p id='error'>A minimun of 1 character is required for search results</p>
+    
+
+   
+</body>
+
+</html>";
+
+   
+} else {
+       
+    
 if(isset($_POST['submit'])) {
    $document_name= "%" . $_POST['name'] . "%"; 
        
@@ -74,9 +124,6 @@ echo "<h1>Search Results</h1>"; // title of page
     
 while($search_stmt->fetch()) {
     
-    
-    
-    
     echo "<tr class='files'>";
     echo    "<td class='docNum'><a class='file' href='".$search_path."' rel='noopener noreferrer' target='_blank''><div class='file'></div>" . $search_document_name . "</a></td>";
     echo    "<td class='revNum'>" . $search_revision . "</td>";
@@ -98,6 +145,7 @@ while($search_stmt->fetch()) {
 
 } else {
     echo "<p>Please enter a document name in the search bar</p>";
+}
 }
 ?>
 

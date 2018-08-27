@@ -37,9 +37,15 @@ img.isLogo {
     margin-left: -100px;
 }
 
-h1, p, a, th, td {
+h1, p, a, th, td, h2 {
     font-family: 'Roboto', sans-serif;
     text-decoration: none;
+}
+
+p#error {
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    font-size: 20px;
 }
 
 th {

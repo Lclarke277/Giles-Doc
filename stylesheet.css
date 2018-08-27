@@ -3,6 +3,7 @@ html, body {
     height: 100%;
     margin: 0;
     overflow: hidden;
+    
     /* background-color: aquamarine;
     background-image: url(media/gradientBackground.jpeg); */
 }
@@ -23,7 +24,7 @@ img#isLogo {
 
 h1#title {
     text-shadow: 2px 4px 15px rgba(0, 0, 0, 0.3);
-    color: black;
+    color: white;
     font-family: 'Roboto', sans-serif;
     margin: 0;
     text-align: center;
@@ -49,7 +50,7 @@ th, td {
 }
 
 td {
-    text-align: left;
+    text-align: center;
     padding-bottom: 5px;
 }
 
@@ -173,8 +174,13 @@ video {
   min-height: 100%;
   width: auto; 
   height: auto;
-  z-index: -100;
+  z-index: -10;
   overflow: hidden
+}
+
+html {
+    background-color: black;
+    z-index: -201;
 }
 
 /* this is CSS for small screens (tablet) */

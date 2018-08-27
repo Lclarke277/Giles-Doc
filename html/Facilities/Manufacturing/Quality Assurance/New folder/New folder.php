@@ -1,6 +1,7 @@
 <html>
     
 <head>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
     
@@ -10,6 +11,7 @@
     echo "<h1>" . ucwords(strtolower(basename($_SERVER['PHP_SELF'], ".php"))) . "</h1>"; // title of page
     // title is dynamic from the folder name. Camel-case is applied
     
+    $h1 = (basename($_SERVER['PHP_SELF'], ".php"));
     $dir = str_replace('html', 'docs', getcwd()); 
     $templateDir = substr(getcwd(), 0, 14) . "templates";
     $currentWorkingDir = substr(getcwd(), 19, 90);
@@ -175,12 +177,14 @@ while (($num) <= (count($dirFolders)-1)){ // else (if its a folder) do the follw
     
     if (!$flag) {
     echo "<table>
+    <thead>
       <tr class='fixedHeader'>
         <th>Document #</th>
-        <th>Revision</th>
+        <th class='revNum'>Revision</th>
         <th>Description</th>
-        <th>Effective</th>
-      </tr>";
+        <th class='effDate'>Effective</th>
+      </tr>
+      </thead>";
         
     } 
         } else { // if it's not the manufacturing page
@@ -193,13 +197,16 @@ while (($num) <= (count($dirFolders)-1)){ // else (if its a folder) do the follw
     
     if (!$flag) {
     echo "<table>
+    <thead>
       <tr class='fixedHeader'>
         <th>Document #</th>
-        <th>Revision</th>
+        <th class='revNum'>Revision</th>
         <th>Description</th>
-        <th>Effective</th>
-      </tr>";
-    } 
+        <th class='effDate'>Effective</th>
+      </tr>
+      </thead>";
+    }
+}
 
 // building advanced SQL statement to delete any entries that exists in the database but files dont exists in the current dir
 $sqlDir = str_replace('C:\wamp64\www\\', 'http://lclarkeserver.ddns.net/' , $dir);
@@ -235,7 +242,7 @@ while (($num) <= (count($dirFiles)-1)){
            </tr>";
         
     // appending to the sql remove query to remove files that don't exists    
-    $sqlDelete .= "AND path NOT LIKE '%" . $filename . "' ";
+    $sqlDelete .= "AND path NOT LIKE '%" . $h1 . "/" . $filename . "' ";
         
     
     // build SQL statement to add data into the database
@@ -246,9 +253,17 @@ while (($num) <= (count($dirFiles)-1)){
         
     } // files while end
 } // end of if flag
+    
+    $num = 0;
+    while ($num < (count($dirFolders) -1)) {
+         $sqlDelete .= "AND path NOT LIKE '%" . $h1 . "/" . $dirFolders[$num] . "%' ";
+         $num++;
+    }
+    
         // execute the sql delete command
         $conn->query($sqlDelete);
-} // end of if flag
+    
+ // end of if flag
     echo "</div>"; // end div.files
     echo "</div>"; // end of div.files-folders
     echo "</div>"; // end of div.files-container
