@@ -16,6 +16,8 @@
     $templateDir = substr(getcwd(), 0, 14) . "templates";
     $currentWorkingDir = substr(getcwd(), 19, 90);
     
+    echo $templateDir . "\\" . $currentWorkingDir;
+    
     if (!file_exists($templateDir . "\\" . $currentWorkingDir)){ // create folder in www/html/ if it doens't exists
             mkdir($templateDir . "\\" . $currentWorkingDir, 0700);
         }
