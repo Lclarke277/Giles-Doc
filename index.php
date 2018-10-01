@@ -77,7 +77,7 @@
                                } // while
     $maxDir = $maxDir - 2; // end of Max Dir Alg 
     
-$sqlDelete = "DELETE FROM docs WHERE path LIKE 'http://lclarkeserver.ddns.net/docs/%' ";
+$sqlDelete = "DELETE FROM docs WHERE path LIKE 'localhost/docs/%' ";
     
     
     $num2 = 0;
@@ -139,7 +139,7 @@ $sqlDelete = "DELETE FROM docs WHERE path LIKE 'http://lclarkeserver.ddns.net/do
     "<div class='searchDiv'>
      <h3>Document Search</h3>
         <form  method='post' action='" . $baseSearch . "'  id='searchform'> 
-           <input  class='searchBar' type='text' name='name' placeholder='Doc Number'> 
+           <input  class='searchBar' type='text' name='name' placeholder=''> 
            <input  class='searchButton' type='submit' name='submit' value='Search'> 
         </form>
     </div>";

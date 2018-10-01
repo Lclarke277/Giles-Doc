@@ -1,7 +1,7 @@
 #Only Replace Numbers / Dates on This Page#
 
 #Production Goal Numbers#^
-200 per shift
+300 per shift
 ^
 2450 per week
 ^
@@ -26,7 +26,7 @@ Please get with your Supervisor to schedule a time to be tested
 ^
 
 #Lot Numbers#^
-08/18/18 - Saturday - 04-3218
+08/18/18 - Monday - 04-3218
 ^
 08/19/18 - Sunday - 04-3218
 ^
