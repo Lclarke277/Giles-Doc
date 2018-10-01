@@ -13,7 +13,7 @@
     
     $h1 = (basename($_SERVER['PHP_SELF'], ".php"));
     $dir = str_replace('html', 'docs', getcwd()); 
-    $templateDir = substr(getcwd(), 0, 14) . "templates";
+    $templateDir = substr(getcwd(), 0, 14) . "html";
     $currentWorkingDir = substr(getcwd(), 19, 90);
     
     if (!file_exists($templateDir . "\\" . $currentWorkingDir)){ // create folder in www/html/ if it doens't exists
