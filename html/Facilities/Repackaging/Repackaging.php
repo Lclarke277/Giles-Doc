@@ -12,12 +12,8 @@
     // title is dynamic from the folder name. Camel-case is applied
     
     $dir = str_replace('html', 'docs', getcwd()); 
-    $templateDir = substr(getcwd(), 0, 14) . "html";
+    //$templateDir = substr(getcwd(), 0, 14) . "templates";
     $currentWorkingDir = substr(getcwd(), 19, 90);
-    
-    if (!file_exists($templateDir . "\\" . $currentWorkingDir)){ // create folder in www/html/ if it doens't exists
-            mkdir($templateDir . "\\" . $currentWorkingDir, 0700);
-        }
     
     $parDir = (substr_count($dir, '\\')) - 2; // variable to find out how to get back to baseIndex.php 
     $basePath = str_repeat('../', $parDir) . 'baseIndex.php'; 
