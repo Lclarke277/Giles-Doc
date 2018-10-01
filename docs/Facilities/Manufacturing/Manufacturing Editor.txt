@@ -1,7 +1,11 @@
 #Only Replace Numbers / Dates on This Page#
 
 #Production Goal Numbers#^
+<<<<<<< HEAD
 300 per shift
+=======
+250 per shift
+>>>>>>> parent of 7639463... Clean Stop
 ^
 2450 per week
 ^

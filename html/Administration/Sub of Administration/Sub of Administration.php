@@ -12,7 +12,7 @@
     // title is dynamic from the folder name. Camel-case is applied
     
     $dir = str_replace('html', 'docs', getcwd()); 
-    $templateDir = substr(getcwd(), 0, 14) . "html";
+    $templateDir = substr(getcwd(), 0, 14) . "templates";
     $currentWorkingDir = substr(getcwd(), 19, 90);
     
     if (!file_exists($templateDir . "\\" . $currentWorkingDir)){ // create folder in www/html/ if it doens't exists
@@ -37,7 +37,7 @@
     
     echo "<div class='buttons'>";
     echo "<div class='button-container'>";
-        echo "<a class='button' href='localhost/index.php'>Home</a>"; // home button
+        echo "<a class='button' href='http://lclarkeserver.ddns.net/index.php'>Home</a>"; // home button
 
         // dynamic back button
         $tmp = explode('\\', dirname(__DIR__));
@@ -46,18 +46,18 @@
     // if backPage would send you to html/html.php, instead send to the home page
     if ($backPage == '\html.php'){
         
-        $backButton = 'localhost/index.php'; // path generation
+        $backButton = 'http://lclarkeserver.ddns.net/index.php'; // path generation
         echo "<a class='button' href='".$backButton."'>Back</a>"; // back button
         
     } else {
         
-        $backButton = str_replace('C:\wamp64\www', 'localhost', dirname(__DIR__)) . $backPage; // path generation
+        $backButton = str_replace('C:\wamp64\www', 'http://lclarkeserver.ddns.net', dirname(__DIR__)) . $backPage; // path generation
         echo "<a class='button' href='".$backButton."'>Back</a>"; // back button
     } // else
     
     // search form
     echo "<form  method='post' action='" . $baseSearch . "'  id='searchform'> 
-               <input  class='searchBar' type='text' name='name' placeholder=''> 
+               <input  class='searchBar' type='text' name='name' placeholder='Doc Number'> 
                <input  class='searchButton' type='submit' name='submit' value='Search'> 
           </form>";
     
@@ -207,7 +207,7 @@ while (($num) <= (count($dirFolders)-1)){ // else (if its a folder) do the follw
     } 
 
 // building advanced SQL statement to delete any entries that exists in the database but files dont exists in the current dir
-$sqlDir = str_replace('C:\wamp64\www\\', 'localhost/' , $dir);
+$sqlDir = str_replace('C:\wamp64\www\\', 'http://lclarkeserver.ddns.net/' , $dir);
 $sqlDir = str_replace('\\', '/', $sqlDir);
 $sqlDelete = "DELETE FROM docs WHERE path LIKE '" .  $sqlDir . "%' ";
         
@@ -219,7 +219,7 @@ while (($num) <= (count($dirFiles)-1)){
     
     array_push($fileNamesHere, $filename);
     $fileData = explode('^', $filename); // get the data based on the % delimiter in the filename
-    $path = str_replace('C:\wamp64\www', 'localhost', $dir . '/' . $filename); // generate the path to the file
+    $path = str_replace('C:\wamp64\www', 'http://lclarkeserver.ddns.net', $dir . '/' . $filename); // generate the path to the file
     $path = str_replace('\\', '/', $path);
     
     // if the file is invalid, skip it and don't display
