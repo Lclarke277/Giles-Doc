@@ -16,6 +16,7 @@
     $pw = '!$iGnIN!';
     $conn = mysqli_connect($hn, $un, $pw, $db); 
 
+<<<<<<< HEAD
 if(empty($_POST['name'])) {
     echo "<h1>Search Results</h1>"; // title of page
     // title is dynamic from the folder name. Camel-case is applied
@@ -66,6 +67,8 @@ if(empty($_POST['name'])) {
 } else {
        
     
+=======
+>>>>>>> parent of acbb8d2... Stopped White 'Flickering' on Transitions
 if(isset($_POST['submit'])) {
    $document_name= "%" . $_POST['name'] . "%"; 
        
@@ -124,6 +127,9 @@ echo "<h1>Search Results</h1>"; // title of page
     
 while($search_stmt->fetch()) {
     
+    
+    
+    
     echo "<tr class='files'>";
     echo    "<td class='docNum'><a class='file' href='".$search_path."' rel='noopener noreferrer' target='_blank''><div class='file'></div>" . $search_document_name . "</a></td>";
     echo    "<td class='revNum'>" . $search_revision . "</td>";
@@ -145,7 +151,6 @@ while($search_stmt->fetch()) {
 
 } else {
     echo "<p>Please enter a document name in the search bar</p>";
-}
 }
 ?>
 

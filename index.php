@@ -142,13 +142,12 @@ $sqlDelete = "DELETE FROM docs WHERE path LIKE 'localhost/docs/%' ";
            <input  class='searchBar' type='text' name='name' placeholder=''> 
            <input  class='searchButton' type='submit' name='submit' value='Search'> 
         </form>
-    </div>";
-        
+    </div>"
     ?>
     <img id=isLogo src="media/isLogo.png">
     
     <video autoplay loop plays-inline muted>
-        <source src="media/backVideo.webm" type="video/webm">
+        <source src="media/videoBack.webm" type="video/webm">
     </video>
     
     
