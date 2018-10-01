@@ -8,7 +8,7 @@
 
     <?php 
     // connect to database. Will have to move to external file?
-    $hn = 'localhost';
+    $hn = 'http://localhost';
     $db = 'giles_docs';
     $un = 'giles';
     $pw = '!$iGnIN!';
@@ -40,7 +40,7 @@
     
     echo "<div class='buttons'>";
     echo "<div class='button-container'>";
-        echo "<a class='button' href='localhost/index.php'>Home</a>"; // home button
+        echo "<a class='button' href='http://localhost/index.php'>Home</a>"; // home button
 
         // dynamic back button
         $tmp = explode('\\', dirname(__DIR__));
@@ -49,12 +49,12 @@
     // if backPage would send you to html/html.php, instead send to the home page
     if ($backPage == '\html.php'){
         
-        $backButton = 'localhost/index.php'; // path generation
+        $backButton = 'http://localhost/index.php'; // path generation
         echo "<a class='button' href='".$backButton."'>Back</a>"; // back button
         
     } else {
         
-        $backButton = str_replace('C:\wamp64\www', 'localhost', dirname(__DIR__)) . $backPage; // path generation
+        $backButton = str_replace('C:\wamp64\www', 'http://localhost', dirname(__DIR__)) . $backPage; // path generation
         echo "<a class='button' href='".$backButton."'>Back</a>"; // back button
     } // else
     
@@ -150,7 +150,7 @@ while (($num) <= (count($dirFolders)-1)){ // else (if its a folder) do the follw
 }
 
 // building advanced SQL statement to delete any entries that exists in the database but files dont exists in the current dir
-$sqlDir = str_replace('C:\wamp64\www\\', 'localhost/' , $dir);
+$sqlDir = str_replace('C:\wamp64\www\\', 'http://localhost/' , $dir);
 $sqlDir = str_replace('\\', '/', $sqlDir);
 $sqlDelete = "DELETE FROM docs WHERE path LIKE '" .  $sqlDir . "%' ";
         
@@ -165,10 +165,10 @@ while (($num) <= (count($dirFiles)-1)){
     $filename = $dirFiles[$num];
     $fileData = explode('^', $filename); // get the data based on the % delimiter in the filename
 <<<<<<< HEAD
-    $path = str_replace('C:\wamp64\www', 'localhost', $dir . '/' . $filename); // generate the path to the file
+    $path = str_replace('C:\wamp64\www', 'http://localhost', $dir . '/' . $filename); // generate the path to the file
     $path = str_replace('\\', '/', $path);
 =======
-    $path = str_replace('C:\wamp64\www', 'http://lclarkeserver.ddns.net', $dir . '/' . $filename); // generate the path to the file
+    $path = str_replace('C:\wamp64\www', 'http://localhost', $dir . '/' . $filename); // generate the path to the file
 >>>>>>> parent of acbb8d2... Stopped White 'Flickering' on Transitions
     
     if (isset($fileData[1]) == false) {

@@ -77,7 +77,7 @@
                                } // while
     $maxDir = $maxDir - 2; // end of Max Dir Alg 
     
-$sqlDelete = "DELETE FROM docs WHERE path LIKE 'localhost/docs/%' ";
+$sqlDelete = "DELETE FROM docs WHERE path LIKE 'http://localhost/docs/%' ";
     
     
     $num2 = 0;

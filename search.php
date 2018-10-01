@@ -10,7 +10,7 @@
 
 <?php
 
-    $hn = 'localhost';
+    $hn = 'http://localhost';
     $db = 'giles_docs';
     $un = 'giles';
     $pw = '!$iGnIN!';
@@ -38,7 +38,7 @@ if(empty($_POST['name'])) {
     
     echo "<div class='buttons'>";
     echo "<div class='button-container'>";
-        echo "<a class='button' href='localhost/index.php'>Home</a>"; // home button
+        echo "<a class='button' href='http://localhost/index.php'>Home</a>"; // home button
     
     // search form
     echo "<form  method='post' action='" . $baseSearch . "'  id='searchform'> 
@@ -100,7 +100,7 @@ echo "<h1>Search Results</h1>"; // title of page
     
     echo "<div class='buttons'>";
     echo "<div class='button-container'>";
-        echo "<a class='button' href='localhost/index.php'>Home</a>"; // home button
+        echo "<a class='button' href='http://localhost/index.php'>Home</a>"; // home button
     
     // search form
     echo "<form  method='post' action='" . $baseSearch . "'  id='searchform'> 
