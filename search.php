@@ -41,7 +41,7 @@ if(empty($_POST['name'])) {
     
     // search form
     echo "<form  method='post' action='" . $baseSearch . "'  id='searchform'> 
-               <input  class='searchBar' type='text' name='name' placeholder='Doc Number'> 
+               <input  class='searchBar' type='text' name='name'> 
                <input  class='searchButton' type='submit' name='submit' value='Search'> 
           </form>";
     
@@ -100,7 +100,7 @@ echo "<h1>Search Results</h1>"; // title of page
     
     // search form
     echo "<form  method='post' action='" . $baseSearch . "'  id='searchform'> 
-               <input  class='searchBar' type='text' name='name' placeholder='Doc Number'> 
+               <input  class='searchBar' type='text' name='name'> 
                <input  class='searchButton' type='submit' name='submit' value='Search'> 
           </form>";
     
